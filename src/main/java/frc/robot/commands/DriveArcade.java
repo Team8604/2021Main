@@ -11,7 +11,7 @@ public class DriveArcade extends CommandBase {
   /** Creates a new DriveArcade. */
   public DriveArcade() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.m_drivetrain);
+    addRequirements(RobotContainer.drivetrain);
   }
 
   // Called when the command is initially scheduled.
@@ -23,13 +23,13 @@ public class DriveArcade extends CommandBase {
   public void execute() {
   double moveSpeed = -RobotContainer.driverController.getRawAxis(1);
   double rotateSpeed = RobotContainer.driverController.getRawAxis(0);
-  RobotContainer.m_drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
+  RobotContainer.drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.m_drivetrain.arcadeDrive(0, 0);
+    RobotContainer.drivetrain.arcadeDrive(0, 0);
   }
 
   // Returns true when the command should end.

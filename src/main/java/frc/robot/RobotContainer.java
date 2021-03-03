@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.DriveArcade;
-import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -20,12 +20,13 @@ import frc.robot.subsystems.Drivetrain;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static Joystick driverController = new Joystick(0);
-  public static Drivetrain m_drivetrain = new Drivetrain();
+  public static Drivetrain drivetrain = new Drivetrain();
+  public static Intake intake = new Intake();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    m_drivetrain.setDefaultCommand(new DriveArcade());
+    drivetrain.setDefaultCommand(new DriveArcade());
   }
 
   /**

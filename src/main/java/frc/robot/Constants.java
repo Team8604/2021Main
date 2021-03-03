@@ -17,4 +17,7 @@ public final class Constants {
     public static final int kRightLeader = 23;
     public static final int[] kLeftFollowers = {21,22};
     public static final int[] kRightFollowers = {24,25};
+
+    public static final int kPCM = 1;
+    public static final int kIntakeSolenoid = 1;
 }
