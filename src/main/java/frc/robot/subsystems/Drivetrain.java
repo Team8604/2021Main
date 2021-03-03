@@ -4,40 +4,40 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import frc.robot.Constants;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
   
-  private CANSparkMax leftLeader;
-  private CANSparkMax rightLeader;
-  private CANSparkMax [] leftFollowers;
-  private CANSparkMax [] rightFollowers;
+  private WPI_TalonFX leftLeader;
+  private WPI_TalonFX rightLeader;
+  private WPI_TalonFX [] leftFollowers;
+  private WPI_TalonFX [] rightFollowers;
   SpeedControllerGroup leftMotors;
   SpeedControllerGroup rightMotors;
   DifferentialDrive differentialDrive;
 
   public Drivetrain() {
     // Init Left Leader
-    leftLeader  = new CANSparkMax(Constants.kLeftLeader, MotorType.kBrushed);
+    leftLeader  = new WPI_TalonFX(Constants.kLeftLeader);
     // Init Right Leader
-    rightLeader  = new CANSparkMax(Constants.kRightLeader, MotorType.kBrushed);
+    rightLeader  = new WPI_TalonFX(Constants.kRightLeader);
 
     // init left followers
-    leftFollowers = new CANSparkMax[Constants.kLeftFollowers.length];
+    leftFollowers = new WPI_TalonFX[Constants.kLeftFollowers.length];
     for(int i = 0; i < leftFollowers.length; ++i) {
-        leftFollowers[i] = new CANSparkMax(Constants.kLeftFollowers[i], MotorType.kBrushed);
+        leftFollowers[i] = new WPI_TalonFX(Constants.kLeftFollowers[i]);
     }
     //init right followers
-    rightFollowers = new CANSparkMax[Constants.kRightFollowers.length];
+    rightFollowers = new WPI_TalonFX[Constants.kRightFollowers.length];
     for(int i = 0; i < rightFollowers.length; ++i) {
-        rightFollowers[i] = new CANSparkMax(Constants.kRightFollowers[i], MotorType.kBrushed);
+        rightFollowers[i] = new WPI_TalonFX(Constants.kRightFollowers[i]);
     }
     leftMotors = new SpeedControllerGroup(leftLeader, leftFollowers);
     rightMotors = new SpeedControllerGroup(rightLeader, rightFollowers);
