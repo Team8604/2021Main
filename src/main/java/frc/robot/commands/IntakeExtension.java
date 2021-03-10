@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.Intake;
+import frc.robot.RobotContainer;
 
 public class IntakeExtension extends CommandBase {
   
@@ -14,7 +15,7 @@ public class IntakeExtension extends CommandBase {
 
   public IntakeExtension(boolean extended) {
     addRequirements(RobotContainer.intake);
-    this.exetnded = extended;
+    this.extended = extended;
   }
 
   // Called when the command is initially scheduled.

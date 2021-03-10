@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.Constants;
 
 public class DriveArcade extends CommandBase {
   /** Creates a new DriveArcade. */
@@ -21,8 +22,8 @@ public class DriveArcade extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  double moveSpeed = -RobotContainer.driverController.getRawAxis(1);
-  double rotateSpeed = RobotContainer.driverController.getRawAxis(0);
+  double moveSpeed = -RobotContainer.driverController.getRawAxis(Constants.kLeftStickY);
+  double rotateSpeed = RobotContainer.driverController.getRawAxis(Constants.kLeftStickX);
   RobotContainer.drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 

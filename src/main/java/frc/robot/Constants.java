@@ -20,4 +20,18 @@ public final class Constants {
 
     public static final int kPCM = 1;
     public static final int kIntakeSolenoid = 1;
+    public static final int kIntakeMotor = 26;
+
+    public static final double kIntakeMotorSpeed = 0.05;
+
+    public static final int kButtonA = 1;
+    public static final int kButtonB = 2;
+    public static final int kButtonX = 3;
+    public static final int kButtonY = 4;
+
+    public static final int kLeftStickX = 1;
+    public static final int kLeftStickY = 2;
+    public static final int kRightStickX = 4;
+    public static final int kRightStickY = 5;
+
 }

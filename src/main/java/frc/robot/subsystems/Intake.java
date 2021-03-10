@@ -18,7 +18,7 @@ public class Intake extends SubsystemBase {
 
   public Intake() {
     intakeSolenoid = new Solenoid(Constants.kPCM, Constants.kIntakeSolenoid);
-
+    intakeMotor = new WPI_TalonFX(Constants.kIntakeMotor);
   }
 
   @Override
@@ -30,7 +30,7 @@ public class Intake extends SubsystemBase {
   }
 
   public void setSolenoid(boolean extended){
-    intakeSolenoid.set(extend);
+    intakeSolenoid.set(extended);
   }
 
   public boolean getSolenoid(){
