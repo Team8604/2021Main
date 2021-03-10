@@ -14,6 +14,7 @@ public class IntakeExtension extends CommandBase {
   private boolean extended;
 
   public IntakeExtension(boolean extended) {
+    SmartDashboard.putBoolean("intakeExtensionStatus", extended);
     addRequirements(RobotContainer.intake);
     this.extended = extended;
   }

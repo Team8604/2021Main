@@ -14,6 +14,7 @@ public class IntakeMotor extends CommandBase {
   private double speed;
 
   public IntakeMotor(double speed) {
+    SmartDashboard.putNumber("intakeMotorStatus", speed);
     addRequirements(RobotContainer.intake);
     this.speed = speed;
   }

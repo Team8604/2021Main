@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.Constants;
 import frc.robot.commands.IntakeMotor;
@@ -16,6 +17,7 @@ import frc.robot.commands.IntakeExtension;
 public class IntakeExtensionMotor extends SequentialCommandGroup {
   /** Creates a new IntakeExtensionMotor. */
   public IntakeExtensionMotor(boolean extended) {
+    SmartDashboard.putBoolean("intakeExtensionMotorStatus", extended);
     addCommands(new IntakeExtension(extended), new IntakeMotor(extended ? Constants.kIntakeMotorSpeed : 0));
   }
 }
