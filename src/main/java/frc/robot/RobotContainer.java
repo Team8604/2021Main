@@ -25,6 +25,7 @@ public class RobotContainer {
 
   public static Drivetrain drivetrain = new Drivetrain();
   public static Intake intake = new Intake();
+  public static BallTunnel ballTunnel = new BallTunnel();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {

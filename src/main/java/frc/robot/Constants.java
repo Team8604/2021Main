@@ -20,7 +20,9 @@ public final class Constants {
 
     public static final int kPCM = 1;
     public static final int kIntakeSolenoid = 1;
+
     public static final int kIntakeMotor = 26;
+    public static final int kBallMotor = 27;
 
     public static final double kIntakeMotorSpeed = 0.05;
 
