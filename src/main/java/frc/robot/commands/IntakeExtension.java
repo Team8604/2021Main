@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.Intake;
 import frc.robot.RobotContainer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class IntakeExtension extends CommandBase {
@@ -16,7 +15,6 @@ public class IntakeExtension extends CommandBase {
   private boolean extended;
 
   public IntakeExtension(boolean extended) {
-    SmartDashboard.putBoolean("intakeExtensionStatus", extended);
     addRequirements(RobotContainer.intake);
     this.extended = extended;
   }

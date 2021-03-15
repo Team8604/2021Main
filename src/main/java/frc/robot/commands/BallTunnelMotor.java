@@ -6,23 +6,21 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-import frc.robot.subsystems.Intake;
 import frc.robot.RobotContainer;
 
+public class BallTunnelMotor extends CommandBase {
 
-public class IntakeMotor extends CommandBase {
-  
   private double speed;
 
-  public IntakeMotor(double speed) {
-    addRequirements(RobotContainer.intake);
+  public BallTunnelMotor(double speed) {
+    addRequirements(RobotContainer.ballTunnel);
     this.speed = speed;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.intake.setMotor(speed);
+    RobotContainer.ballTunnel.setSpeed(speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

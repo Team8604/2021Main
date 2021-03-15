@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
@@ -23,6 +24,7 @@ public class BallTunnel extends SubsystemBase {
   }
 
   public void setSpeed(double speed){
+    SmartDashboard.putNumber("ballTunnelMotorStatus", speed);
     ballMotor.set(speed);
   }
 }
