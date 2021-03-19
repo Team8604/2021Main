@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants;
 
-public class DriveArcade extends CommandBase {
+public class DriveArcadeH extends CommandBase {
   /** Creates a new DriveArcade. */
-  public DriveArcade() {
+  public DriveArcadeH() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.drivetrain);
   }
@@ -25,6 +25,8 @@ public class DriveArcade extends CommandBase {
   double moveSpeed = -RobotContainer.driverController.getRawAxis(Constants.kLeftStickY);
   double rotateSpeed = RobotContainer.driverController.getRawAxis(Constants.kLeftStickX);
   RobotContainer.drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
+  double hSpeed = RobotContainer.driverController.getRawAxis(Constants.kRightStickX);
+  RobotContainer.drivetrain.set(hSpeed);
   }
 
   // Called once the command ends or is interrupted.

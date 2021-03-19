@@ -23,7 +23,7 @@ public class RobotContainer {
   public static Joystick driverController = new Joystick(0);
   public static JoystickButton driverAButton = new JoystickButton(driverController, Constants.kButtonA);
 
-  public static Drivetrain drivetrain = new Drivetrain();
+  public static HDrive drivetrain = new HDrive();
   public static Intake intake = new Intake();
   public static BallTunnel ballTunnel = new BallTunnel();
 
@@ -31,7 +31,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    drivetrain.setDefaultCommand(new DriveArcade());
+    drivetrain.setDefaultCommand(new DriveArcadeH());
   }
 
   /**
