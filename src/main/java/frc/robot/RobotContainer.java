@@ -22,6 +22,9 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static Joystick driverController = new Joystick(0);
   public static JoystickButton driverAButton = new JoystickButton(driverController, Constants.kButtonA);
+  public static JoystickButton driverRBumper = new JoystickButton(driverController, Constants.kBumperR);
+  public static JoystickButton driverLBumper = new JoystickButton(driverController, Constants.kBumperL);
+
 
   public static HDrive drivetrain = new HDrive();
   public static Intake intake = new Intake();
@@ -43,7 +46,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     driverAButton.whenPressed(new IntakeExtensionMotor(true));
     driverAButton.whenReleased(new IntakeExtensionMotor(false));
-
+    driverLBumper.whenPressed(new BallTunnelMotor(Constants.kBallTunnelMotorSpeed));
+    driverRBumper.whenPressed(new BallTunnelMotor(-Constants.kBallTunnelMotorSpeed));
   }
 
   /**

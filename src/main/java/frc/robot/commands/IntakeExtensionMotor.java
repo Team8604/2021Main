@@ -18,6 +18,13 @@ public class IntakeExtensionMotor extends SequentialCommandGroup {
   /** Creates a new IntakeExtensionMotor. */
   public IntakeExtensionMotor(boolean extended) {
     SmartDashboard.putBoolean("intakeExtensionMotorStatus", extended);
-    addCommands(new IntakeExtension(extended), new IntakeMotor(extended ? Constants.kIntakeMotorSpeed : 0));
+    isExtended = extended;
+    if(isExtended){
+      addCommands(new IntakeExtension(extended), new IntakeMotor(extended ? Constants.kIntakeMotorSpeed : 0), new BallTunnelDuringIntaking());
+    } else {
+      addCommands(new IntakeExtension(extended), new IntakeMotor(extended ? Constants.kIntakeMotorSpeed : 0));
+    }
   }
+
+  public static boolean isExtended = false;
 }

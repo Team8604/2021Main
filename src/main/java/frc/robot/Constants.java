@@ -27,15 +27,24 @@ public final class Constants {
     public static final int kBallMotor = 27;
 
     public static final double kIntakeMotorSpeed = 0.05;
+    public static final double kBallTunnelMotorSpeed = 0.05;
 
     public static final int kButtonA = 1;
     public static final int kButtonB = 2;
     public static final int kButtonX = 3;
     public static final int kButtonY = 4;
+    public static final int kBumperL = 5;
+    public static final int kBumperR = 6;
 
     public static final int kLeftStickX = 1;
     public static final int kLeftStickY = 2;
     public static final int kRightStickX = 4;
     public static final int kRightStickY = 5;
 
+    public static final int kBallSensorCutoff = 512;
+    public static final int kBallSensorIDBase = 3;
+
+    public static final double kBallTunnelDeactivateDelay = 0.5;
+
+    public static boolean isDebugMode = false;
 }
