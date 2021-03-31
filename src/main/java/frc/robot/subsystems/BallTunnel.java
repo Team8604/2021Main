@@ -11,13 +11,15 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
+
 
 public class BallTunnel extends SubsystemBase {
 
   private WPI_TalonFX ballMotor;
   private DigitalInput[] sensors;
 
-  public int ballsInTunnel = 0;
+  private int ballsInTunnel = 0;
 
   public BallTunnel() {
     ballMotor = new WPI_TalonFX(Constants.kBallMotor);
@@ -31,6 +33,10 @@ public class BallTunnel extends SubsystemBase {
 
   @Override
   public void periodic() {
+    if(!readSensorStateLower() && lastSensorState){
+      setBallsInTunnel(ballsInTunnel+1);
+    }
+    lastSensorState = readSensorStateLower();
   }
 
   public void setSpeed(double speed){
@@ -49,6 +55,19 @@ public class BallTunnel extends SubsystemBase {
   }
   public boolean readSensorStateUpper(){
     return readSensorState(2) || readSensorState(3);
+  }
+
+  private boolean lastSensorState;
+
+  public void setBallsInTunnel(int value){
+    ballsInTunnel = value;
+    if(Constants.isDebugMode){
+      SmartDashboard.putNumber("ballsInTunnel", value);
+    }
+  }
+
+  public int getBallsInTunnel(){
+    return ballsInTunnel;
   }
 
 }

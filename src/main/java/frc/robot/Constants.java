@@ -13,6 +13,8 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static boolean isDebugMode = false;
+
     public static final int kLeftLeader = 20;
     public static final int kRightLeader = 23;
     public static final int kHLeader = 26;
@@ -20,14 +22,11 @@ public final class Constants {
     public static final int[] kRightFollowers = {24,25};
     public static final int[] kHFollowers = {27, 28};
 
-    public static final int kPCM = 1;
-    public static final int kIntakeSolenoid = 1;
-
     public static final int kIntakeMotor = 26;
     public static final int kBallMotor = 27;
 
-    public static final double kIntakeMotorSpeed = 0.05;
-    public static final double kBallTunnelMotorSpeed = 0.05;
+    public static final int kPCM = 1;
+    public static final int kIntakeSolenoid = 1;
 
     public static final int kButtonA = 1;
     public static final int kButtonB = 2;
@@ -41,10 +40,12 @@ public final class Constants {
     public static final int kRightStickX = 4;
     public static final int kRightStickY = 5;
 
-    public static final int kBallSensorCutoff = 512;
     public static final int kBallSensorIDBase = 3;
+
+    public static final double kIntakeMotorSpeed = 0.05;
+    public static final double kBallTunnelMotorSpeed = 0.05;
 
     public static final double kBallTunnelDeactivateDelay = 0.5;
 
-    public static boolean isDebugMode = false;
+
 }

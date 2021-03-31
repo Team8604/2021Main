@@ -16,8 +16,6 @@ public class BallTunnelDuringIntaking extends CommandBase {
 
   private Timer timer;
 
-  private boolean lastSensorState;
-
   public BallTunnelDuringIntaking() {
     addRequirements(RobotContainer.ballTunnel);
   }
@@ -35,10 +33,6 @@ public class BallTunnelDuringIntaking extends CommandBase {
     if(!IntakeExtensionMotor.isExtended) {
       timer.start();
     }
-    if(!RobotContainer.ballTunnel.readSensorStateLower() && lastSensorState){
-      RobotContainer.ballTunnel.ballsInTunnel++;
-    }
-    lastSensorState = RobotContainer.ballTunnel.readSensorStateLower();
   }
 
   @Override

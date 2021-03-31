@@ -32,7 +32,9 @@ public class Intake extends SubsystemBase {
   }
 
   public void setSolenoid(boolean extended){
-    SmartDashboard.putBoolean("intakeExtensionStatus", extended);
+    if(Constants.isDebugMode) { 
+      SmartDashboard.putBoolean("intakeExtensionStatus", extended); 
+    }
     intakeSolenoid.set(extended);
   }
 
