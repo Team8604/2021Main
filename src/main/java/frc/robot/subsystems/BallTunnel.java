@@ -17,6 +17,8 @@ public class BallTunnel extends SubsystemBase {
   private WPI_TalonFX ballMotor;
   private DigitalInput[] sensors;
 
+  public int ballsInTunnel = 0;
+
   public BallTunnel() {
     ballMotor = new WPI_TalonFX(Constants.kBallMotor);
     sensors = new DigitalInput[]{
@@ -39,7 +41,14 @@ public class BallTunnel extends SubsystemBase {
   }
 
   public boolean readSensorState(int sensor){//0 and 1 for bottom, 2 and 3 for top
-    return sensor[sensor].get();
+    return sensors[sensor].get();
+  }
+
+  public boolean readSensorStateLower(){
+    return readSensorState(0) || readSensorState(1);
+  }
+  public boolean readSensorStateUpper(){
+    return readSensorState(2) || readSensorState(3);
   }
 
 }

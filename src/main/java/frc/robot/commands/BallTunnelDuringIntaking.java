@@ -8,11 +8,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
 import frc.robot.RobotContainer;
-import frc.robot.command.IntakeExtensionMotor;
+import frc.robot.Constants;
+
+import frc.robot.commands.IntakeExtensionMotor;
 
 public class BallTunnelDuringIntaking extends CommandBase {
 
   private Timer timer;
+
+  private boolean lastSensorState;
 
   public BallTunnelDuringIntaking() {
     addRequirements(RobotContainer.ballTunnel);
@@ -23,23 +27,27 @@ public class BallTunnelDuringIntaking extends CommandBase {
 
   @Override
   public void execute() {
-    if(RobotContainer.ballTunnel.readSensor(0) && !RobotContainer.ballTunnel.readSensor(2)){//TODO: Verify sensor placement/usage.
-      RobotContainer.ballTunnel.set(Constants.kBallTunnelMotorSpeed);
+    if(RobotContainer.ballTunnel.readSensorStateLower() && !RobotContainer.ballTunnel.readSensorStateUpper()){//TODO: Verify sensor placement/usage.
+      RobotContainer.ballTunnel.setSpeed(Constants.kBallTunnelMotorSpeed);
     } else {
-      RobotContainer.ballTunnel.set(0);
+      RobotContainer.ballTunnel.setSpeed(0);
     }
-    if(!IntakeExtensionMotor.extended) {
+    if(!IntakeExtensionMotor.isExtended) {
       timer.start();
     }
+    if(!RobotContainer.ballTunnel.readSensorStateLower() && lastSensorState){
+      RobotContainer.ballTunnel.ballsInTunnel++;
+    }
+    lastSensorState = RobotContainer.ballTunnel.readSensorStateLower();
   }
 
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.ballTunnel.set(0);
+    RobotContainer.ballTunnel.setSpeed(0);
   }
 
   @Override
   public boolean isFinished() {
-    return timer.hasElasped(Constants.kBallTunnelDeactivateDelay);
+    return timer.hasElapsed(Constants.kBallTunnelDeactivateDelay);
   }
 }
