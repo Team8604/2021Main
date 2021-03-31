@@ -27,18 +27,25 @@ public class Intake extends SubsystemBase {
   }
 
   public void setMotor(double speed){
-    SmartDashboard.putNumber("intakeMotorStatus", speed);
+    if(Constants.isDebugMode) { 
+      SmartDashboard.putNumber("intakeMotorStatus", speed);
+    }
     intakeMotor.set(speed);
   }
 
   public void setSolenoid(boolean extended){
-    if(Constants.isDebugMode) { 
-      SmartDashboard.putBoolean("intakeExtensionStatus", extended); 
+    if(intakeExtended != extended){
+      intakeExtended = extended;
+      if(Constants.isDebugMode) { 
+        SmartDashboard.putBoolean("intakeExtensionStatus", extended); 
+      }
+      intakeSolenoid.set(extended);
     }
-    intakeSolenoid.set(extended);
   }
 
   public boolean getSolenoid(){
     return intakeSolenoid.get();
   }
+
+  private boolean intakeExtended;
 }

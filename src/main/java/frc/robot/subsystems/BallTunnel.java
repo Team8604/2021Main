@@ -60,10 +60,10 @@ public class BallTunnel extends SubsystemBase {
   private boolean lastSensorState;
 
   public void setBallsInTunnel(int value){
-    ballsInTunnel = value;
     if(Constants.isDebugMode){
       SmartDashboard.putNumber("ballsInTunnel", value);
     }
+    ballsInTunnel = value;
   }
 
   public int getBallsInTunnel(){

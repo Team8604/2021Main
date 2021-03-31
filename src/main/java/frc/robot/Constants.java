@@ -25,8 +25,13 @@ public final class Constants {
     public static final int kIntakeMotor = 26;
     public static final int kBallMotor = 27;
 
+    public static final int kShooterMotorMaster = 28;
+    public static final int kShooterMotorSlave = 29;
+
+
     public static final int kPCM = 1;
     public static final int kIntakeSolenoid = 1;
+    public static final int kShooterSolenoid = 2;
 
     public static final int kButtonA = 1;
     public static final int kButtonB = 2;
@@ -47,5 +52,6 @@ public final class Constants {
 
     public static final double kBallTunnelDeactivateDelay = 0.5;
 
-
+    public static final double kRPM2Ticks = 2048/(60*1000);
+    public static final double kTicks2RPM = 1/kRPM2Ticks;
 }
