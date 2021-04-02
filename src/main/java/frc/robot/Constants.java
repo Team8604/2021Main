@@ -56,6 +56,10 @@ public final class Constants {
 
     public static final double kIntakeMotorSpeed = 0.05;
     public static final double kBallTunnelMotorSpeed = 0.05;
+    public static final double kShootShortMotorSpeed = 2000;
+    public static final double kShootLongMotorSpeed = 2000;
+    
+    public static final double kMaxRPMDelta = 150;
 
     public static final double kBallTunnelDeactivateDelay = 0.5;
 

@@ -20,6 +20,10 @@ public class Shooter extends SubsystemBase {
 
   private Solenoid hoodPiston;
 
+  private boolean shooterHoodExtended;
+
+  private double targetSpeed;
+
   public Shooter() {
     master = new WPI_TalonFX(Constants.kShooterMotorMaster);
     slave = new WPI_TalonFX(Constants.kShooterMotorSlave);
@@ -28,7 +32,7 @@ public class Shooter extends SubsystemBase {
     hoodPiston = new Solenoid(Constants.kPCM, Constants.kShooterSolenoid);
 
     //CONFIGURE PID
-    master.configureFactoryDefault();
+    master.configFactoryDefault();
     master.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, Constants.kPIDLoopIdx, Constants.kTimeoutsMs);
     master.config_kF(Constants.kPIDLoopIdx, Constants.kGains_Velocity_kF, Constants.kTimeoutsMs);
     master.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocity_kP, Constants.kTimeoutsMs);
@@ -48,6 +52,7 @@ public class Shooter extends SubsystemBase {
       }
       hoodPiston.set(extended);
     }
+    targetSpeed = 0;
   }
 
   public void setMotorRaw(double percentOutput){
@@ -64,7 +69,17 @@ public class Shooter extends SubsystemBase {
       SmartDashboard.putString("shooterMotorMode", "PID");
     }
     master.set(TalonFXControlMode.Velocity, speedRPM * Constants.kRPM2Ticks);
+    targetSpeed = speedRPM;
   }
 
-  private boolean shooterHoodExtended;
+  public boolean motorWithinRPM(double targetRPM, double tolerance){
+    double currentDelta = targetRPM - (master.getSelectedSensorVelocity(Constants.kPIDLoopIdx) * Constants.kTicks2RPM);
+    return currentDelta < tolerance && currentDelta > -tolerance;
+  }
+
+  
+  public boolean motorWithinRPM(double tolerance){
+    return motorWithinRPM(targetSpeed, tolerance);
+  }
+
 }

@@ -19,6 +19,9 @@ public class BallTunnel extends SubsystemBase {
   private WPI_TalonFX ballMotor;
   private DigitalInput[] sensors;
 
+  private boolean lastSensorStateLower;
+  private boolean lastSensorStateUpper;
+
   private int ballsInTunnel = 0;
 
   public BallTunnel() {
@@ -33,10 +36,14 @@ public class BallTunnel extends SubsystemBase {
 
   @Override
   public void periodic() {
-    if(!readSensorStateLower() && lastSensorState){
+    if(!readSensorStateLower() && lastSensorStateLower){
       setBallsInTunnel(ballsInTunnel+1);
     }
-    lastSensorState = readSensorStateLower();
+    lastSensorStateLower = readSensorStateLower();
+    if(!readSensorStateUpper() && lastSensorStateUpper){
+      setBallsInTunnel(ballsInTunnel-1);
+    }
+    lastSensorStateUpper = readSensorStateUpper();
   }
 
   public void setSpeed(double speed){
@@ -56,8 +63,6 @@ public class BallTunnel extends SubsystemBase {
   public boolean readSensorStateUpper(){
     return readSensorState(2) || readSensorState(3);
   }
-
-  private boolean lastSensorState;
 
   public void setBallsInTunnel(int value){
     if(Constants.isDebugMode){
