@@ -28,6 +28,13 @@ public final class Constants {
     public static final int kShooterMotorMaster = 28;
     public static final int kShooterMotorSlave = 29;
 
+    public static final int kPIDLoopIdx = 0;
+    public static final int kTimeoutsMs = 30;
+
+    public static final double kGains_Velocity_kP = 0.5;
+    public static final double kGains_Velocity_kI = 0;
+    public static final double kGains_Velocity_kD = 0;
+    public static final double kGains_Velocity_kF = 0;
 
     public static final int kPCM = 1;
     public static final int kIntakeSolenoid = 1;
@@ -52,6 +59,6 @@ public final class Constants {
 
     public static final double kBallTunnelDeactivateDelay = 0.5;
 
-    public static final double kRPM2Ticks = 2048/(60*1000);
+    public static final double kRPM2Ticks = 2048/(60*10);
     public static final double kTicks2RPM = 1/kRPM2Ticks;
 }
