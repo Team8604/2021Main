@@ -25,6 +25,11 @@ public class RobotContainer {
   public static JoystickButton driverRBumper = new JoystickButton(driverController, Constants.kBumperR);
   public static JoystickButton driverLBumper = new JoystickButton(driverController, Constants.kBumperL);
 
+  public static Joystick operatorButtonBoard = new Joystick(1);
+  public static JoystickButton operatorL3 = new JoystickButton(operatorButtonBoard, Constants.kBBButtonL3);
+  public static JoystickButton operatorR3 = new JoystickButton(operatorButtonBoard, Constants.kBBButtonR3);
+  public static JoystickButton operatorX = new JoystickButton(operatorButtonBoard, Constants.kBBButtonX);
+  public static JoystickButton operatorY = new JoystickButton(operatorButtonBoard, Constants.kBBButtonY);
 
   public static HDrive drivetrain = new HDrive();
   public static Intake intake = new Intake();
@@ -49,6 +54,11 @@ public class RobotContainer {
     driverAButton.whenReleased(new IntakeExtensionMotor(false));
     driverLBumper.whenPressed(new BallTunnelMotor(Constants.kBallTunnelMotorSpeed));
     driverRBumper.whenPressed(new BallTunnelMotor(-Constants.kBallTunnelMotorSpeed));
+
+    operatorL3.whenPressed(new BallTunnelCountOverride(-1));
+    operatorR3.whenPressed(new BallTunnelCountOverride(1));
+    operatorX.whileHeld(new ShootLong());
+    operatorY.whileHeld(new ShootLong());
   }
 
   /**
