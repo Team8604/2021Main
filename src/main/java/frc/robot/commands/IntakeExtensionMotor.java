@@ -20,11 +20,12 @@ public class IntakeExtensionMotor extends SequentialCommandGroup {
     SmartDashboard.putBoolean("intakeExtensionMotorStatus", extended);
     isExtended = extended;
     if(isExtended){
-      addCommands(new IntakeExtension(extended), new IntakeMotor(extended ? Constants.kIntakeMotorSpeed : 0), new BallTunnelDuringIntaking());
-    } else {
-      addCommands(new IntakeExtension(extended), new IntakeMotor(extended ? Constants.kIntakeMotorSpeed : 0));
+      addCommands(new IntakeExtension(extended), new IntakeMotor(extended ? Constants.kIntakeMotorSpeed : 0), new BallTunnelDuringIntaking()); //TODO This line should be addCommands(new IntakeExtension(extended), new IntakeMotor(extended ? Constants.kIntakeMotorSpeed : 0), new BallTunnelDuringIntaking()); but I'm not testing BallTunnelDuringIntaking right now
+    } 
+    else {
+      addCommands(new IntakeExtension(extended), new IntakeMotor(0));
     }
   }
 
-  public static boolean isExtended = false;
+  public static boolean isExtended;
 }

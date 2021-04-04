@@ -9,8 +9,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
@@ -18,7 +21,7 @@ public class Shooter extends SubsystemBase {
   private WPI_TalonFX master;
   private WPI_TalonFX slave;
 
-  private Solenoid hoodPiston;
+  private DoubleSolenoid hoodPiston;
 
   private boolean shooterHoodExtended;
 
@@ -29,7 +32,9 @@ public class Shooter extends SubsystemBase {
     slave = new WPI_TalonFX(Constants.kShooterMotorSlave);
     slave.follow(master);
     slave.setInverted(InvertType.OpposeMaster);
-    hoodPiston = new Solenoid(Constants.kPCM, Constants.kShooterSolenoid);
+    master.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true,Constants.kDriveCurrentLimitContinuous,Constants.kDriveCurrentLimitPeak,Constants.kDriveCurrentLimitTime));
+    slave.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true,Constants.kDriveCurrentLimitContinuous,Constants.kDriveCurrentLimitPeak,Constants.kDriveCurrentLimitTime));
+    hoodPiston = new DoubleSolenoid(Constants.kPCM, Constants.kShooterSolenoidExtend, Constants.kShooterSolenoidRetract);
 
     //CONFIGURE PID
     master.configFactoryDefault();
@@ -42,15 +47,22 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() {
-  }
+    if(Constants.isDebugMode){
+      SmartDashboard.putNumber("shooterMotorActual", master.getSelectedSensorVelocity()/Constants.kRPM2Ticks);
 
+    }
+  }
+  
   public void setShooterHood(boolean extended){
-    if(shooterHoodExtended != extended) {
-      shooterHoodExtended = extended;
-      if(Constants.isDebugMode){
-        SmartDashboard.putBoolean("shooterHoodState", extended);
-      }
-      hoodPiston.set(extended);
+    if(Constants.isDebugMode) { 
+      SmartDashboard.putBoolean("shooterHoodState", extended);
+    }
+    if(extended){
+      hoodPiston.set(Value.kForward);
+
+    }
+    else{
+      hoodPiston.set(Value.kReverse);
     }
     targetSpeed = 0;
   }
@@ -60,12 +72,12 @@ public class Shooter extends SubsystemBase {
       SmartDashboard.putNumber("shooterMotor", percentOutput);
       SmartDashboard.putString("shooterMotorMode", "raw");
     }
-    master.set(TalonFXControlMode.Velocity, percentOutput);
+    master.set(TalonFXControlMode.PercentOutput, percentOutput);
   }
 
   public void setMotorPID(double speedRPM){
     if(Constants.isDebugMode){
-      SmartDashboard.putNumber("shooterMotor", speedRPM);
+      SmartDashboard.putNumber("shooterMotorTarget", speedRPM);
       SmartDashboard.putString("shooterMotorMode", "PID");
     }
     master.set(TalonFXControlMode.Velocity, speedRPM * Constants.kRPM2Ticks);
@@ -73,7 +85,10 @@ public class Shooter extends SubsystemBase {
   }
 
   public boolean motorWithinRPM(double targetRPM, double tolerance){
-    double currentDelta = targetRPM - (master.getSelectedSensorVelocity(Constants.kPIDLoopIdx) * Constants.kTicks2RPM);
+    // double low = (targetRPM-tolerance)*Constants.kTicks2RPM;
+    // double high = (targetRPM+tolerance)*Constants.kTicks2RPM; 
+    // if((master.getSelectedSensorVelocity()/Constants.kTicks2RPM) 
+    double currentDelta = targetRPM - (master.getSelectedSensorVelocity() * Constants.kTicks2RPM);
     return currentDelta < tolerance && currentDelta > -tolerance;
   }
 

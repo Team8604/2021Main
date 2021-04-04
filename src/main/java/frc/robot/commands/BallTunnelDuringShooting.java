@@ -10,37 +10,38 @@ import frc.robot.Constants;
 
 public class BallTunnelDuringShooting extends CommandBase {
   /** Creates a new BallTunnelDuringShooting. */
+  private boolean done = false;
   public BallTunnelDuringShooting() {
     addRequirements(RobotContainer.ballTunnel);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    done = false;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if(RobotContainer.shooter.motorWithinRPM(Constants.kMaxRPMDelta)){
-      RobotContainer.ballTunnel.setSpeed(Constants.kBallTunnelMotorSpeed);
-    } else {
-      if(!RobotContainer.ballTunnel.readSensorStateUpper()){
-        RobotContainer.ballTunnel.setSpeed(Constants.kBallTunnelMotorSpeed);
-      } else {
-        RobotContainer.ballTunnel.setSpeed(0);
-      }
+      RobotContainer.ballTunnel.setSpeed(Constants.kBallTunnelMotorSpeedShoot);
+      done = true;
+    } 
+    else {
+      // RobotContainer.ballTunnel.setSpeed(0);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.ballTunnel.setSpeed(0);
+    // RobotContainer.ballTunnel.setSpeed(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return done;
   }
 }

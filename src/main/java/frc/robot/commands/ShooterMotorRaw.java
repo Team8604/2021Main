@@ -7,18 +7,18 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class ShooterMotor extends CommandBase {
+public class ShooterMotorRaw extends CommandBase {
 
-  private double target;
+  private double speed;
 
-  public ShooterMotor(double target) {
+  public ShooterMotorRaw(double speed) {
     addRequirements(RobotContainer.shooter);
-    this.target = target;
+    this.speed = speed;
   }
 
   @Override
   public void initialize() {
-    RobotContainer.shooter.setMotorPID(target);
+    RobotContainer.shooter.setMotorRaw(speed);
   }
 
   @Override
@@ -26,7 +26,6 @@ public class ShooterMotor extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    // RobotContainer.shooter.setMotorRaw(0);
   }
 
   @Override

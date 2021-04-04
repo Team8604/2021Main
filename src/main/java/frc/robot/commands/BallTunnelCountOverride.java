@@ -18,11 +18,12 @@ public class BallTunnelCountOverride extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void initialize() { /*
     RobotContainer.ballTunnel.setBallsInTunnel(RobotContainer.ballTunnel.getBallsInTunnel() + amount); 
     if(RobotContainer.ballTunnel.getBallsInTunnel() < 0){
       RobotContainer.ballTunnel.setBallsInTunnel(0);
     }
+    */
   }
 
   // Called every time the scheduler runs while the command is scheduled.
