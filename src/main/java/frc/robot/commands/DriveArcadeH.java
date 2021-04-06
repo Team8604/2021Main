@@ -26,9 +26,9 @@ public class DriveArcadeH extends CommandBase {
 	double reverseSpeed = RobotContainer.driverController.getRawAxis(Constants.kBBLTrigger);
 	double moveSpeed = forwardSpeed - reverseSpeed;
 	double rotateSpeed = RobotContainer.driverController.getRawAxis(Constants.kLeftStickX);
-  RobotContainer.drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
+  RobotContainer.drivetrain.arcadeDrive(moveSpeed*Constants.kDriveModifier, rotateSpeed);
   double hSpeed = RobotContainer.driverController.getRawAxis(Constants.kRightStickX);
-  RobotContainer.drivetrain.set(hSpeed);
+  RobotContainer.drivetrain.set(hSpeed*Constants.kDriveModifier);
   }
 
   // Called once the command ends or is interrupted.

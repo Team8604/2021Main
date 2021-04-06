@@ -26,7 +26,7 @@ public final class Constants {
     public static final int kBallTunnelMotorSpeedShoot = 1;
     public static final int kTunnelDistance = 15000;
     public static final int kTunnelDistanceShoot = 1024;
-
+    public static final double kDriveModifier = 0.4;
     public static final int kIntakeMotor = 4;
     public static final int kBallMotor = 5;
 
