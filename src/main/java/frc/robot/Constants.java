@@ -35,6 +35,7 @@ public final class Constants {
     // Drivetrain speed modifiers
     public static final double kDriveModifierTurn = 1; // .75
     public static final double kDriveModifier = 1; // .4
+    public static final double kMinRotateSpeed = 0.05;
 
     // Motor speeds
     public static final int kBallTunnelMotorSpeedShoot = 1;
@@ -48,13 +49,15 @@ public final class Constants {
     public static final boolean kIntakeMotorInversion = true;
     public static final boolean kBallTunnelInversion = true;
 
-    // Shooter PID Constants
+    // PID Constants
     public static final int kPIDLoopIdx = 0;
     public static final int kTimeoutsMs = 30;
     public static final double kGains_Velocity_kP = .39;
     public static final double kGains_Velocity_kI = 0;
     public static final double kGains_Velocity_kD = 1;
     public static final double kGains_Velocity_kF = .057;
+
+    public static final double kLimeLightTurn_kP = 0.01; //1/27, so max turn at limelight edge of view is 0.037037....
 
     // Solenoids
     public static final int kShooterSolenoidExtend = 0;
@@ -87,6 +90,7 @@ public final class Constants {
     // Other
     public static final int kSensorDebounce = 3;
     public static final double kBallTunnelDeactivateDelay = 1;
+    public static final int kRequiredLimeLightGoodCycles = 15;
 
     // Button IDs
     public static final int kButtonA = 1;
@@ -117,5 +121,5 @@ public final class Constants {
     public static final int kBBButtonShare = 6;
     public static final int kBBButtonOptions = 7;
     public static final int kBBButtonL3 = 8;
-    public static final int kBBButtonR3 = 9;
+    public static final int kBBButtonR3 = 9;    
 }
