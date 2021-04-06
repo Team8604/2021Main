@@ -5,16 +5,10 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.Timer;
-
 import frc.robot.RobotContainer;
 import frc.robot.Constants;
 
-import frc.robot.commands.IntakeExtensionMotor;
-
 public class BallTunnelDuringIntaking extends CommandBase {
-
-  private Timer timer;
   private Boolean previousSensorState = false;
   private double startingPosition;
 
@@ -23,29 +17,28 @@ public class BallTunnelDuringIntaking extends CommandBase {
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   @Override
   public void execute() {
-    if(previousSensorState==false && RobotContainer.ballTunnel.readSensorStateLower() == true){ //Enter this statement if this is the first moment the ball has broken the sensor sight
+    if (previousSensorState == false && RobotContainer.ballTunnel.readSensorStateLower() == true) {
+      // Enter this statement if this is the first moment the ball has broken the sensor sight
       startingPosition = RobotContainer.ballTunnel.getMotorPosition();
+      previousSensorState = true;
     }
 
-    if(RobotContainer.ballTunnel.readSensorStateLower() && !RobotContainer.ballTunnel.readSensorStateUpper()){
-      if(RobotContainer.ballTunnel.getMotorPosition() < startingPosition+Constants.kTunnelDistance){
+    else if (previousSensorState && RobotContainer.ballTunnel.readSensorStateLower()) {
+      if (RobotContainer.ballTunnel.getMotorPosition() < startingPosition + Constants.kTunnelDistance) {
         RobotContainer.ballTunnel.setSpeed(Constants.kBallTunnelMotorSpeed);
-      }
-      else{
+      } else {
         RobotContainer.ballTunnel.setSpeed(0);
+        previousSensorState = false;
       }
-    } 
-    else {
+    } else {
       RobotContainer.ballTunnel.setSpeed(0);
     }
     previousSensorState = RobotContainer.ballTunnel.readSensorStateLower();
-    //if(RobotContainer.intake.getSolenoid()) {
-    //  timer.start();
-    //}
   }
 
   @Override
@@ -55,6 +48,6 @@ public class BallTunnelDuringIntaking extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return false; //timer.hasElapsed(Constants.kBallTunnelDeactivateDelay);
+    return false; // timer.hasElapsed(Constants.kBallTunnelDeactivateDelay);
   }
 }

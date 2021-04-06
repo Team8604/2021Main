@@ -14,6 +14,5 @@ public class ShootShort extends SequentialCommandGroup {
   /** Creates a new ShootShort. */
   public ShootShort() {
     addCommands(new BallTunnelBeforeShooting(), new ShooterHood(false), new ShooterMotor(Constants.kShootShortMotorSpeed), new BallTunnelDuringShooting());
-    // addCommands(new ShooterHood(true), new ShooterMotor(Constants.kShootShortMotorSpeed), new BallTunnelDuringShooting());
   }
 }

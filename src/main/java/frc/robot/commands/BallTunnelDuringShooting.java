@@ -11,6 +11,7 @@ import frc.robot.Constants;
 public class BallTunnelDuringShooting extends CommandBase {
   /** Creates a new BallTunnelDuringShooting. */
   private boolean done = false;
+
   public BallTunnelDuringShooting() {
     addRequirements(RobotContainer.ballTunnel);
   }
@@ -24,11 +25,10 @@ public class BallTunnelDuringShooting extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(RobotContainer.shooter.motorWithinRPM(Constants.kMaxRPMDelta)){
+    if (RobotContainer.shooter.motorWithinRPM(Constants.kMaxRPMDelta)) {
       RobotContainer.ballTunnel.setSpeed(Constants.kBallTunnelMotorSpeedShoot);
       done = true;
-    } 
-    else {
+    } else {
       // RobotContainer.ballTunnel.setSpeed(0);
     }
   }

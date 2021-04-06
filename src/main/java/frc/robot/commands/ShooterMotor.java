@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class ShooterMotor extends CommandBase {
-
   private double target;
 
   public ShooterMotor(double target) {
@@ -22,11 +21,11 @@ public class ShooterMotor extends CommandBase {
   }
 
   @Override
-  public void execute() {}
+  public void execute() {
+  }
 
   @Override
   public void end(boolean interrupted) {
-    // RobotContainer.shooter.setMotorRaw(0);
   }
 
   @Override

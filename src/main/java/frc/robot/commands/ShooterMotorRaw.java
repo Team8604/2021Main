@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class ShooterMotorRaw extends CommandBase {
-
   private double speed;
 
   public ShooterMotorRaw(double speed) {
@@ -22,7 +21,8 @@ public class ShooterMotorRaw extends CommandBase {
   }
 
   @Override
-  public void execute() {}
+  public void execute() {
+  }
 
   @Override
   public void end(boolean interrupted) {

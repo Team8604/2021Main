@@ -5,11 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.Timer;
-
 import frc.robot.RobotContainer;
 import frc.robot.Constants;
-
 
 public class BallTunnelBeforeShooting extends CommandBase {
 
@@ -28,15 +25,12 @@ public class BallTunnelBeforeShooting extends CommandBase {
 
   @Override
   public void execute() {
-      if(RobotContainer.ballTunnel.getMotorPosition() > startingPosition-(Constants.kTunnelDistanceShoot)){
-        RobotContainer.ballTunnel.setSpeed(-Constants.kBallTunnelMotorSpeedSlow);
-      }
-      else{
-        RobotContainer.ballTunnel.setSpeed(0);
-        done = true;      }
-    //if(RobotContainer.intake.getSolenoid()) {
-    //  timer.start();
-    //}
+    if (RobotContainer.ballTunnel.getMotorPosition() > startingPosition - (Constants.kTunnelDistanceShoot)) {
+      RobotContainer.ballTunnel.setSpeed(-Constants.kBallTunnelMotorSpeedSlow);
+    } else {
+      RobotContainer.ballTunnel.setSpeed(0);
+      done = true;
+    }
   }
 
   @Override
@@ -46,6 +40,6 @@ public class BallTunnelBeforeShooting extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return done; //timer.hasElapsed(Constants.kBallTunnelDeactivateDelay);
+    return done; // timer.hasElapsed(Constants.kBallTunnelDeactivateDelay);
   }
 }

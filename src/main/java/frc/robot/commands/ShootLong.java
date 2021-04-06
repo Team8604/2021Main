@@ -11,7 +11,7 @@ import frc.robot.Constants;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ShootLong extends SequentialCommandGroup {
-  /** Creates a new ShootShort. */
+  /** Creates a new ShootLong. */
   public ShootLong() {
     addCommands(new BallTunnelBeforeShooting(), new ShooterHood(true), new ShooterMotor(Constants.kShootLongMotorSpeed), new BallTunnelDuringShooting());
   }

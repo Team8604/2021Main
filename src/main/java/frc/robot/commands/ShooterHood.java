@@ -8,8 +8,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class ShooterHood extends CommandBase {
-
-private boolean extended;
+  private boolean extended;
 
   public ShooterHood(boolean extended) {
     this.extended = extended;
@@ -21,10 +20,12 @@ private boolean extended;
   }
 
   @Override
-  public void execute() {}
+  public void execute() {
+  }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   @Override
   public boolean isFinished() {
