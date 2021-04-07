@@ -81,7 +81,7 @@ public final class Constants {
 
     public static final double kRPM2Ticks = 2048 / (60 * 10);
     public static final double kTicks2RPM = 1 / kRPM2Ticks;
-    public static final double drivetrainGearRatio = 12.96;
+    public static final double drivetrainGearRatio = 8.4;
 
     public static final double kRevToInches = drivetrainGearRatio / (kWheelDiameter * Math.PI);
     public static final double kTicksToInches = kRevToInches / 2048;

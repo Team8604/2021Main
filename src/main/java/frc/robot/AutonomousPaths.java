@@ -1,5 +1,10 @@
 package frc.robot;
 
+import frc.robot.commands.AutonomousDrive;
+import frc.robot.commands.AutonomousRotate;
+
+import edu.wpi.first.wpilibj2.command.Command;
+
 public class AutonomousPaths {
 
     public static final Command[] bouncePath = new Command[] {
