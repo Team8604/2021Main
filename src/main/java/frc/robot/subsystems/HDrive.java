@@ -15,6 +15,10 @@ import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 
 
 public class HDrive extends SubsystemBase {
+
+  private ADXRS450_Gyro gyro;
+	public boolean gyroDisabled = false;
+
   private WPI_TalonFX leftLeader;
   private WPI_TalonFX rightLeader;
   private WPI_TalonFX hLeader;
@@ -82,6 +86,16 @@ public class HDrive extends SubsystemBase {
     rightLeader.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Position_kI, Constants.kTimeoutsMs);
     rightLeader.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Position_kD, Constants.kTimeoutsMs);
 
+    try {
+			gyro = new ADXRS450_Gyro();
+			gyro.calibrate();
+			gyro.reset();
+      SmartDashboard.putBoolean("gyroStatus", true);
+		} catch (NullPointerException e) {
+			gyroDisabled = true;
+      SmartDashboard.putBoolean("gyroStatus", false);
+		}
+
   }
 
   public void arcadeDrive(double moveSpeed, double rotateSpeed) {
@@ -121,6 +135,29 @@ public class HDrive extends SubsystemBase {
 
   public double getRightPIDError(){
     return rightLeader.getClosedLoopError(Constants.kPIDLoopIdx) * Constants.kTicksToInches;
+  }
+
+  public void setMotorPower(double powerRatio){
+    leftLeader.configNominalOutputForward(0, Constants.kTimeoutMs);
+    leftLeader.configNominalOutputReverse(0, Constants.kTimeoutMs);
+    leftLeader.configPeakOutputForward(powerRatio, Constants.kTimeoutMs);
+    leftLeader.configPeakOutputReverse(-powerRatio, Constants.kTimeoutMs);
+
+    rightLeader.configNominalOutputForward(0, Constants.kTimeoutMs);
+    rightLeader.configNominalOutputReverse(0, Constants.kTimeoutMs);
+    rightLeader.configPeakOutputForward(powerRatio, Constants.kTimeoutMs);
+    rightLeader.configPeakOutputReverse(-powerRatio, Constants.kTimeoutMs);
+
+    hLeader.configNominalOutputForward(0, Constants.kTimeoutMs);
+    hLeader.configNominalOutputReverse(0, Constants.kTimeoutMs);
+    hLeader.configPeakOutputForward(powerRatio, Constants.kTimeoutMs);
+    hLeader.configPeakOutputReverse(-powerRatio, Constants.kTimeoutMs);
+  }
+
+  public double getGyroAngle(){
+    double temp = gyro.getAngle();
+    SmartDashboard.putNumber("gyroValue", temp);
+    return temp;
   }
 
   @Override

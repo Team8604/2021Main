@@ -79,6 +79,7 @@ public final class Constants {
     public static final double kDriveCurrentLimitPeak = 45;
     public static final double kDriveCurrentLimitContinuous = 40;
     public static final double kDriveCurrentLimitTime = 0.4;
+    public static final double kDrivePowerRatioDuringAuto = 0.3;
 
     // Math
     public static final double kWheelRadiusFromCenter = 12.2325;//Center of wheel to center of drivetrain X offset

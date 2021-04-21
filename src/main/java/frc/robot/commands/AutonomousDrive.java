@@ -14,22 +14,26 @@ public class AutonomousDrive extends CommandBase {
   }
 
   @Override
-  public void initialize() {}
-
-  @Override
-  public void execute() {
-    RobotContainer.drivetrain.setLeftPID(distance);
-    RobotContainer.drivetrain.setRightPID(distance);
-
-    if(Math.abs(RobotContainer.drivetrain.getLeftPIDError()) < Constants.kMaxInchesDelta && Math.abs(RobotContainer.drivetrain.getRightPIDError()) < Constants.kMaxInchesDelta){
-      counter++;
-    } else {
-      counter = 0;
-    }
+  public void initialize() {
+    RobotContainer.drivetrain.setMotorPower(kDrivePowerRatioDuringAuto);
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void execute() {
+     RobotContainer.drivetrain.setLeftPID(distance);
+     RobotContainer.drivetrain.setRightPID(distance);
+     if(Math.abs(RobotContainer.drivetrain.getLeftPIDError()) < Constants.kMaxInchesDelta && Math.abs(RobotContainer.drivetrain.getRightPIDError()) < Constants.kMaxInchesDelta){
+      counter++;
+    } else {
+       counter = 0;
+    }
+    
+  }
+
+  @Override
+  public void end(boolean interrupted) {
+    RobotContainer.drivetrain.setMotorPower(1);
+  }
 
   @Override
   public boolean isFinished() {
