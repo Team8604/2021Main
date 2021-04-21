@@ -17,22 +17,29 @@ public class DriveArcadeH extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  double moveSpeed = -RobotContainer.driverController.getRawAxis(Constants.kLeftStickY);
-  double rotateSpeed = RobotContainer.driverController.getRawAxis(Constants.kLeftStickX);
-  RobotContainer.drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
-  double hSpeed = RobotContainer.driverController.getRawAxis(Constants.kRightStickX);
-  RobotContainer.drivetrain.set(hSpeed);
+    double forwardSpeed = RobotContainer.driverController.getRawAxis(Constants.kBBRTrigger);
+    double reverseSpeed = RobotContainer.driverController.getRawAxis(Constants.kBBLTrigger);
+    double moveSpeed = (forwardSpeed - reverseSpeed) * Constants.kDriveModifier;
+    double rotateSpeed = RobotContainer.driverController.getRawAxis(Constants.kLeftStickX) * Constants.kDriveModifierTurn;
+    double hSpeed = RobotContainer.driverController.getRawAxis(Constants.kRightStickX) * Constants.kDriveModifier;
+
+    if(Math.abs(hSpeed)>0.03){
+      rotateSpeed = rotateSpeed + -Math.copySign(Constants.kCounterSteer, hSpeed);
+    }
+    RobotContainer.drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
+    RobotContainer.drivetrain.set(hSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.drivetrain.arcadeDrive(0, 0);
+    RobotContainer.drivetrain.set(0, 0, 0);
   }
 
   // Returns true when the command should end.

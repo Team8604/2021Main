@@ -6,10 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import frc.robot.Constants;
-import frc.robot.commands.IntakeMotor;
-import frc.robot.commands.IntakeExtension;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -19,12 +16,14 @@ public class IntakeExtensionMotor extends SequentialCommandGroup {
   public IntakeExtensionMotor(boolean extended) {
     SmartDashboard.putBoolean("intakeExtensionMotorStatus", extended);
     isExtended = extended;
-    if(isExtended){
-      addCommands(new IntakeExtension(extended), new IntakeMotor(extended ? Constants.kIntakeMotorSpeed : 0), new BallTunnelDuringIntaking());
+    if (isExtended) {
+      addCommands(new IntakeExtension(extended),
+          new IntakeMotor(Constants.kIntakeMotorSpeed, Constants.kIntakeMotorHelperSpeed),
+          new BallTunnelDuringIntaking());
     } else {
-      addCommands(new IntakeExtension(extended), new IntakeMotor(extended ? Constants.kIntakeMotorSpeed : 0));
+      addCommands(new IntakeExtension(extended), new IntakeMotor(0, 0));
     }
   }
 
-  public static boolean isExtended = false;
+  public static boolean isExtended;
 }

@@ -4,35 +4,31 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class IntakeExtension extends CommandBase {
+public class StopDrivetrain extends CommandBase {
 
-  private boolean extended;
-
-  public IntakeExtension(boolean extended) {
-    addRequirements(RobotContainer.intake);
-    this.extended = extended;
+  public StopDrivetrain() {
+    addRequirements(RobotContainer.drivetrain);
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.intake.setSolenoid(extended);
+    RobotContainer.drivetrain.arcadeDrive(0,0);
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    RobotContainer.drivetrain.arcadeDrive(0,0);
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    RobotContainer.drivetrain.arcadeDrive(0, 0);
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return true;

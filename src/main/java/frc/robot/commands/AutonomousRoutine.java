@@ -5,14 +5,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Constants;
+import edu.wpi.first.wpilibj2.command.Command;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ShootShort extends SequentialCommandGroup {
-  /** Creates a new ShootShort. */
-  public ShootShort() {
-    addCommands(new BallTunnelBeforeShooting(), new ShooterHood(false), new ShooterMotor(Constants.kShootShortMotorSpeed), new LimeLightTurn(), new BallTunnelDuringShooting());
+public class AutonomousRoutine extends SequentialCommandGroup {
+
+  public AutonomousRoutine(Command[] commands) {
+    addCommands(commands);
   }
 }

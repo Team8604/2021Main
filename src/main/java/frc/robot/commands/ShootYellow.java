@@ -10,9 +10,9 @@ import frc.robot.Constants;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ShootShort extends SequentialCommandGroup {
-  /** Creates a new ShootShort. */
-  public ShootShort() {
-    addCommands(new BallTunnelBeforeShooting(), new ShooterHood(false), new ShooterMotor(Constants.kShootShortMotorSpeed), new LimeLightTurn(), new BallTunnelDuringShooting());
+public class ShootYellow extends SequentialCommandGroup {
+  /** Creates a new ShootLong. */
+  public ShootYellow() {
+    addCommands(new BallTunnelBeforeShooting(), new ShooterHood(true), new ShooterMotor(Constants.kShootYellow), new LimeLightTurn(), new BallTunnelDuringShooting());
   }
 }
