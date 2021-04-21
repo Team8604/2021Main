@@ -25,12 +25,15 @@ public class DriveArcadeH extends CommandBase {
   public void execute() {
     double forwardSpeed = RobotContainer.driverController.getRawAxis(Constants.kBBRTrigger);
     double reverseSpeed = RobotContainer.driverController.getRawAxis(Constants.kBBLTrigger);
-    double moveSpeed = forwardSpeed - reverseSpeed;
-    double rotateSpeed = RobotContainer.driverController.getRawAxis(Constants.kLeftStickX);
-    RobotContainer.drivetrain.arcadeDrive(moveSpeed * Constants.kDriveModifier,
-        rotateSpeed * Constants.kDriveModifierTurn);
-    double hSpeed = RobotContainer.driverController.getRawAxis(Constants.kRightStickX);
-    RobotContainer.drivetrain.set(hSpeed * Constants.kDriveModifier);
+    double moveSpeed = (forwardSpeed - reverseSpeed) * Constants.kDriveModifier;
+    double rotateSpeed = RobotContainer.driverController.getRawAxis(Constants.kLeftStickX) * Constants.kDriveModifierTurn;
+    double hSpeed = RobotContainer.driverController.getRawAxis(Constants.kRightStickX) * Constants.kDriveModifier;
+
+    if(Math.abs(hSpeed)>0.03){
+      rotateSpeed = rotateSpeed + -Math.copySign(Constants.kCounterSteer, hSpeed);
+    }
+    RobotContainer.drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
+    RobotContainer.drivetrain.set(hSpeed);
   }
 
   // Called once the command ends or is interrupted.

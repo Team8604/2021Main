@@ -25,6 +25,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static Joystick driverController = new Joystick(0);
   public static JoystickButton driverAButton = new JoystickButton(driverController, Constants.kButtonA);
+  public static JoystickButton driverBButton = new JoystickButton(driverController, Constants.kButtonB);
   public static JoystickButton driverXButton = new JoystickButton(driverController, Constants.kButtonX);
   public static JoystickButton driverYButton = new JoystickButton(driverController, Constants.kButtonY);
   public static JoystickButton driverRBumper = new JoystickButton(driverController, Constants.kBumperR);
@@ -63,14 +64,37 @@ public class RobotContainer {
     driverAButton.whenReleased(new IntakeExtensionMotor(false));
     driverLBumper.whenPressed(new BallTunnelMotor(-Constants.kBallTunnelMotorSpeed));
     driverLBumper.whenReleased(new BallTunnelMotor(0));
-    driverRBumper.whenPressed(new BallTunnelMotor(Constants.kBallTunnelMotorSpeed));
-    driverRBumper.whenReleased(new BallTunnelMotor(0));
-    driverXButton.whenPressed(new ShootShort());
+    // driverRBumper.whenPressed(new BallTunnelMotor(Constants.kBallTunnelMotorSpeed));
+    // driverRBumper.whenReleased(new BallTunnelMotor(0));
+    //Normal Tele
+    // driverXButton.whenPressed(new ShootShort());
+    // driverXButton.whenReleased(new ShooterMotorRaw(0));
+    // driverXButton.whenReleased(new BallTunnelMotor(0));
+    // driverYButton.whenPressed(new ShootLong());
+    // driverYButton.whenReleased(new ShooterMotorRaw(0));
+    // driverYButton.whenReleased(new BallTunnelMotor(0));
+
+    driverBButton.whenPressed(new DriveStraightTime(.75, .95));
+    driverBButton.whenReleased(new StopDrivetrain());
+    driverXButton.whenPressed(new DriveStraightTime(-.75, .95));
+    driverXButton.whenReleased(new StopDrivetrain());
+    
+    //Interstellar Accuracy
+    
+    /*
+    driverXButton.whenPressed(new ShootGreen());
     driverXButton.whenReleased(new ShooterMotorRaw(0));
     driverXButton.whenReleased(new BallTunnelMotor(0));
-    driverYButton.whenPressed(new ShootLong());
+    driverYButton.whenPressed(new ShootYellow());
     driverYButton.whenReleased(new ShooterMotorRaw(0));
     driverYButton.whenReleased(new BallTunnelMotor(0));
+    driverBButton.whenPressed(new ShootBlue());
+    driverBButton.whenReleased(new ShooterMotorRaw(0));
+    driverBButton.whenReleased(new BallTunnelMotor(0));
+    driverRBumper.whenPressed(new ShootRed());
+    driverRBumper.whenReleased(new ShooterMotorRaw(0));
+    driverRBumper.whenReleased(new BallTunnelMotor(0));
+    */
   }
 
   /**
