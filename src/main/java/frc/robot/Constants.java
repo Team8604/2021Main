@@ -1,19 +1,5 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
-/**
- * The Constants class provides a convenient place for teams to hold robot-wide
- * numerical or boolean constants. This class should not be used for any other
- * purpose. All constants should be declared globally (i.e. public static). Do
- * not put anything functional in this class.
- *
- * <p>
- * It is advised to statically import this class (or one of its inner classes)
- * wherever the constants are needed, to reduce verbosity.
- */
 public final class Constants {
     // Debug mode
     public static boolean isDebugMode = true;
@@ -57,6 +43,10 @@ public final class Constants {
     public static final double kGains_Velocity_kD = 1;
     public static final double kGains_Velocity_kF = .057;
 
+    public static final double kGains_Position_kP = 1;
+    public static final double kGains_Position_kI = 0;
+    public static final double kGains_Position_kD = 0;
+    public static final double kGains_Position_kF = 0;
     public static final double kLimeLightTurn_kP = 0.029; //1/27, so max turn at limelight edge of view is 0.037037....
     public static final double kMinRotateSpeed = 0.29; //0.3;
 
@@ -81,6 +71,7 @@ public final class Constants {
     public static final double kShootBlue = 2775;
     public static final double kShootRed = 2900;
     public static final double kMaxRPMDelta = 150;
+    public static final double kMaxInchesDelta = 0.5;
 
     // Current limits
     public static final double kHDriveCurrentLimit = 35;
@@ -90,13 +81,27 @@ public final class Constants {
     public static final double kDriveCurrentLimitTime = 0.4;
 
     // Math
+    public static final double kWheelRadiusFromCenter = 12.2325;//Center of wheel to center of drivetrain X offset
+    public static final double kWheelDiameter = 6;
+
     public static final double kRPM2Ticks = 2048 / (60 * 10);
     public static final double kTicks2RPM = 1 / kRPM2Ticks;
+    public static final double kDrivetrainGearRatio = 8.4;
+    public static final double kHDrivetrainGearRatio = 5;//TODO: Find actual value
+
+    public static final double kRevToInches = kDrivetrainGearRatio / (kWheelDiameter * Math.PI);
+    public static final double kTicksToInches = kRevToInches / 2048;
+    public static final double kInchesToRev = 1/kRevToInches;
+    public static final double kInchesToTicks = 1/kTicksToInches;
+
+    public static final double kDegreesToInches = (kWheelRadiusFromCenter * Math.PI) / 180;
+    public static final double kInchesToDegrees = 1/kDegreesToInches;
 
     // Other
     public static final int kSensorDebounce = 3;
     public static final double kBallTunnelDeactivateDelay = 1;
     public static final int kRequiredLimeLightGoodCycles = 15;
+    public static final int kRequiredPIDGoodCycles = 15;
 
     // Button IDs
     public static final int kButtonA = 1;

@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
+
 
 public class HDrive extends SubsystemBase {
   private WPI_TalonFX leftLeader;
@@ -18,9 +21,6 @@ public class HDrive extends SubsystemBase {
   private WPI_TalonFX[] leftFollowers;
   private WPI_TalonFX[] rightFollowers;
   private WPI_TalonFX[] hFollowers;
-  private SpeedControllerGroup leftMotors;
-  private SpeedControllerGroup rightMotors;
-  private SpeedControllerGroup hMotors;
   private DifferentialDrive differentialDrive;
 
   public HDrive() {
@@ -45,6 +45,7 @@ public class HDrive extends SubsystemBase {
       leftFollowers[i].setInverted(Constants.invertDrivetrainMotors);
       leftFollowers[i].configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true,
           Constants.kDriveCurrentLimitContinuous, Constants.kDriveCurrentLimitPeak, Constants.kDriveCurrentLimitTime));
+      leftFollowers[i].follow(leftLeader);
     }
     // init right followers
     rightFollowers = new WPI_TalonFX[Constants.kRightFollowers.length];
@@ -53,6 +54,7 @@ public class HDrive extends SubsystemBase {
       rightFollowers[i].setInverted(Constants.invertDrivetrainMotors);
       rightFollowers[i].configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true,
           Constants.kDriveCurrentLimitContinuous, Constants.kDriveCurrentLimitPeak, Constants.kDriveCurrentLimitTime));
+      rightFollowers[i].follow(rightLeader);
     }
 
     hFollowers = new WPI_TalonFX[Constants.kHFollowers.length];
@@ -60,12 +62,26 @@ public class HDrive extends SubsystemBase {
       hFollowers[i] = new WPI_TalonFX(Constants.kHFollowers[i]);
       hFollowers[i].configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, Constants.kHDriveCurrentLimit,
           Constants.kHDriveCurrentLimit, Constants.kHDriveCurrentLimitTime));
-
+      hFollowers[i].follow(hLeader);
     }
-    leftMotors = new SpeedControllerGroup(leftLeader, leftFollowers);
-    rightMotors = new SpeedControllerGroup(rightLeader, rightFollowers);
-    hMotors = new SpeedControllerGroup(hLeader, hFollowers);
-    differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
+    differentialDrive = new DifferentialDrive(leftLeader, rightLeader);
+
+    leftLeader.configFactoryDefault();
+    leftLeader.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, Constants.kPIDLoopIdx,
+        Constants.kTimeoutsMs);
+    leftLeader.config_kF(Constants.kPIDLoopIdx, Constants.kGains_Position_kF, Constants.kTimeoutsMs);
+    leftLeader.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Position_kP, Constants.kTimeoutsMs);
+    leftLeader.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Position_kI, Constants.kTimeoutsMs);
+    leftLeader.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Position_kD, Constants.kTimeoutsMs);
+
+    rightLeader.configFactoryDefault();
+    rightLeader.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, Constants.kPIDLoopIdx,
+        Constants.kTimeoutsMs);
+    rightLeader.config_kF(Constants.kPIDLoopIdx, Constants.kGains_Position_kF, Constants.kTimeoutsMs);
+    rightLeader.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Position_kP, Constants.kTimeoutsMs);
+    rightLeader.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Position_kI, Constants.kTimeoutsMs);
+    rightLeader.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Position_kD, Constants.kTimeoutsMs);
+
   }
 
   public void arcadeDrive(double moveSpeed, double rotateSpeed) {
@@ -73,8 +89,8 @@ public class HDrive extends SubsystemBase {
   }
 
   public void set(double leftSpeed, double rightSpeed) {
-    leftMotors.set(leftSpeed);
-    rightMotors.set(rightSpeed);
+    leftLeader.set(leftSpeed);
+    rightLeader.set(rightSpeed);
   }
 
   public double getHCurrent() {
@@ -82,17 +98,32 @@ public class HDrive extends SubsystemBase {
   }
 
   public void set(double leftSpeed, double rightSpeed, double hSpeed) {
-    leftMotors.set(leftSpeed);
-    rightMotors.set(rightSpeed);
-    hMotors.set(hSpeed);
+    leftLeader.set(leftSpeed);
+    rightLeader.set(rightSpeed);
+    hLeader.set(hSpeed);
   }
 
   public void set(double hSpeed) {
-    hMotors.set(hSpeed);
+    hLeader.set(hSpeed);
+  }
+
+  public void setLeftPID(double targetInches) {
+    leftLeader.set(TalonFXControlMode.Position, targetInches * Constants.kInchesToTicks);
+  }
+
+  public void setRightPID(double targetInches) {
+    rightLeader.set(TalonFXControlMode.Position, targetInches * Constants.kInchesToTicks);
+  }
+
+  public double getLeftPIDError(){
+    return leftLeader.getClosedLoopError(Constants.kPIDLoopIdx) * Constants.kTicksToInches;
+  }
+
+  public double getRightPIDError(){
+    return rightLeader.getClosedLoopError(Constants.kPIDLoopIdx) * Constants.kTicksToInches;
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
   }
 }
