@@ -43,9 +43,10 @@ public class LimeLightTurn extends CommandBase {
 
     if(v != 0.0){
       double turnAmount = Constants.kLimeLightTurn_kP * x;
-      if(turnAmount < Constants.kMinRotateSpeed){
-        turnAmount = Constants.kMinRotateSpeed;
+      if(Math.abs(turnAmount) < Constants.kMinRotateSpeed){
+        turnAmount = Math.copySign(Constants.kMinRotateSpeed, turnAmount);
       }
+      System.out.println(turnAmount);
       RobotContainer.drivetrain.arcadeDrive(0, turnAmount);
       if(x > -1 && x < 1){
         counter++;

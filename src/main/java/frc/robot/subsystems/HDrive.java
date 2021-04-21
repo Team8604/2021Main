@@ -27,13 +27,13 @@ public class HDrive extends SubsystemBase {
     // Init Left Leader
     leftLeader = new WPI_TalonFX(Constants.kLeftLeader);
     leftLeader.setInverted(Constants.invertDrivetrainMotors);
-    leftLeader.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true,
-        Constants.kDriveCurrentLimitContinuous, Constants.kDriveCurrentLimitPeak, Constants.kDriveCurrentLimitTime));
+    // leftLeader.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true,
+        // Constants.kDriveCurrentLimitContinuous, Constants.kDriveCurrentLimitPeak, Constants.kDriveCurrentLimitTime));
     // Init Right Leader
     rightLeader = new WPI_TalonFX(Constants.kRightLeader);
     rightLeader.setInverted(Constants.invertDrivetrainMotors);
-    rightLeader.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true,
-        Constants.kDriveCurrentLimitContinuous, Constants.kDriveCurrentLimitPeak, Constants.kDriveCurrentLimitTime));
+    // rightLeader.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true,
+        // Constants.kDriveCurrentLimitContinuous, Constants.kDriveCurrentLimitPeak, Constants.kDriveCurrentLimitTime));
     // Init H Leader
     hLeader = new WPI_TalonFX(Constants.kHLeader);
     hLeader.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, Constants.kHDriveCurrentLimit,

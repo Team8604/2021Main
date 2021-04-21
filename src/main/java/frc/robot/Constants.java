@@ -19,12 +19,12 @@ public final class Constants {
     public static final int kIntakeMotorHelper = 16;
 
     // Drivetrain speed modifiers
-    public static final double kDriveModifierTurn = 1; // .75
-    public static final double kDriveModifier = 1; // .4
-    public static final double kMinRotateSpeed = 0.05;
+    public static final double kDriveModifierTurn = .4; // .75
+    public static final double kDriveModifier = .6; // .4
+    public static final double kCounterSteer = 0.28;
 
     // Motor speeds
-    public static final int kBallTunnelMotorSpeedShoot = 1;
+    public static final double kBallTunnelMotorSpeedShoot = .3;
     public static final double kIntakeMotorHelperSpeed = 0.7;
     public static final double kBallTunnelMotorSpeedSlow = 0.3;
     public static final double kIntakeMotorSpeed = 0.70;
@@ -47,8 +47,8 @@ public final class Constants {
     public static final double kGains_Position_kI = 0;
     public static final double kGains_Position_kD = 0;
     public static final double kGains_Position_kF = 0;
-
-    public static final double kLimeLightTurn_kP = 0.01; //1/27, so max turn at limelight edge of view is 0.037037....
+    public static final double kLimeLightTurn_kP = 0.029; //1/27, so max turn at limelight edge of view is 0.037037....
+    public static final double kMinRotateSpeed = 0.29; //0.3;
 
     // Solenoids
     public static final int kShooterSolenoidExtend = 0;
@@ -61,10 +61,15 @@ public final class Constants {
     public static final int kBallSensorLowerRight = 1;
 
     // Setpoints
-    public static final int kTunnelDistance = 7500;
+    public static final int kTunnelDistance = 15000; //7500;
     public static final int kTunnelDistanceShoot = 1024;
     public static final double kShootShortMotorSpeed = 3000;
-    public static final double kShootLongMotorSpeed = 3500;
+    public static final double kShootLongMotorSpeed = 2750;
+    //Setpoints for interstellar accuracy
+    public static final double kShootGreen = 3000;
+    public static final double kShootYellow = 3500;
+    public static final double kShootBlue = 2775;
+    public static final double kShootRed = 2900;
     public static final double kMaxRPMDelta = 150;
     public static final double kMaxInchesDelta = 0.5;
 
