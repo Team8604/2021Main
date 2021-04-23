@@ -27,15 +27,27 @@ public class AutonomousRotate extends CommandBase {
   @Override
   public void execute() {
     if(!RobotContainer.drivetrain.gyroDisabled){
-      double delta = (startRotation + rotation) % 360 - RobotContainer.drivetrain.getGyroAngle();
-      if(delta > 30) delta = 30;
-      if(delta < -30) delta = -30;
+      double delta = clampTo360(startRotation + rotation) - RobotContainer.drivetrain.getGyroAngle();
+      //MOST EFFICIENT PATH
+      if(delta > 180){
+        delta -= 360;
+      }
+      if(delta < -180){
+        delta += 360;
+      }
+      //CLAMP SPEED
+      if(delta > 30){
+        delta = 30;
+      } 
+      if(delta < -30){
+       delta = -30;
+      }    
       double turnAmount = Constants.kLimeLightTurn_kP * delta;
       if(Math.abs(turnAmount) < Constants.kMinRotateSpeed){
         turnAmount = Math.copySign(Constants.kMinRotateSpeed, turnAmount);
       }
       RobotContainer.drivetrain.arcadeDrive(0, turnAmount);
-      if((delta) % 360 > -1 && x < (delta) % 360){
+      if(clampTo360(delta) < 1){
          counter++;
        } else{
          counter = 0;
@@ -53,6 +65,10 @@ public class AutonomousRotate extends CommandBase {
       //  counter = 0;
       //}
     }
+  }
+
+  private double clampTo360(double value){
+    return value-Math.floor(value/360)*360;
   }
 
   @Override
