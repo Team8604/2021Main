@@ -19,8 +19,8 @@ public final class Constants {
     public static final int kIntakeMotorHelper = 16;
 
     // Drivetrain speed modifiers
-    public static final double kDriveModifierTurn = .4; // .75
-    public static final double kDriveModifier = .6; // .4
+    public static final double kDriveModifierTurn = 1; // .4
+    public static final double kDriveModifier = 1; // .6
     public static final double kCounterSteer = 0.28;
 
     // Motor speeds
@@ -37,17 +37,19 @@ public final class Constants {
 
     // PID Constants
     public static final int kPIDLoopIdx = 0;
+    public static final int kTimeoutMs = 30;
     public static final int kTimeoutsMs = 30;
     public static final double kGains_Velocity_kP = .39;
     public static final double kGains_Velocity_kI = 0;
     public static final double kGains_Velocity_kD = 1;
     public static final double kGains_Velocity_kF = .057;
 
-    public static final double kGains_Position_kP = 1;
+    public static final double kGains_Position_kP = 0.5;
     public static final double kGains_Position_kI = 0;
     public static final double kGains_Position_kD = 0;
     public static final double kGains_Position_kF = 0;
     public static final double kLimeLightTurn_kP = 0.029; //1/27, so max turn at limelight edge of view is 0.037037....
+    public static final double kAutoTurn_kP = 0.01425;
     public static final double kMinRotateSpeed = 0.29; //0.3;
 
     // Solenoids
@@ -71,7 +73,9 @@ public final class Constants {
     public static final double kShootBlue = 2775;
     public static final double kShootRed = 2900;
     public static final double kMaxRPMDelta = 150;
-    public static final double kMaxInchesDelta = 0.5;
+    public static final double kMaxInchesDelta = 0.1;
+    public static final double kMaxLimeLightDelta = 1;
+    public static final double kMaxAutoTurnDelta = 0.75;
 
     // Current limits
     public static final double kHDriveCurrentLimit = 35;
@@ -90,7 +94,9 @@ public final class Constants {
     public static final double kDrivetrainGearRatio = 8.4;
     public static final double kHDrivetrainGearRatio = 5;//TODO: Find actual value
 
-    public static final double kRevToInches = kDrivetrainGearRatio / (kWheelDiameter * Math.PI);
+    public static final double kFudgeFactor1 = 5.022;
+
+    public static final double kRevToInches = kFudgeFactor1 * kDrivetrainGearRatio / (kWheelDiameter * Math.PI);
     public static final double kTicksToInches = kRevToInches / 2048;
     public static final double kInchesToRev = 1/kRevToInches;
     public static final double kInchesToTicks = 1/kTicksToInches;
@@ -102,7 +108,7 @@ public final class Constants {
     public static final int kSensorDebounce = 3;
     public static final double kBallTunnelDeactivateDelay = 1;
     public static final int kRequiredLimeLightGoodCycles = 15;
-    public static final int kRequiredPIDGoodCycles = 15;
+    public static final int kRequiredPIDGoodCycles = 60;
 
     // Button IDs
     public static final int kButtonA = 1;

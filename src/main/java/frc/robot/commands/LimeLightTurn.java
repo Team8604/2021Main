@@ -48,7 +48,7 @@ public class LimeLightTurn extends CommandBase {
       }
       System.out.println(turnAmount);
       RobotContainer.drivetrain.arcadeDrive(0, turnAmount);
-      if(x > -1 && x < 1){
+      if(x > -Constants.kMaxLimeLightDelta && x < Constants.kMaxLimeLightDelta){
         counter++;
       } else{
         counter = 0;

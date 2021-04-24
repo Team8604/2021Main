@@ -8,11 +8,12 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class HDrive extends SubsystemBase {
 
@@ -86,6 +87,7 @@ public class HDrive extends SubsystemBase {
     rightLeader.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Position_kI, Constants.kTimeoutsMs);
     rightLeader.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Position_kD, Constants.kTimeoutsMs);
 
+
     try {
 			gyro = new ADXRS450_Gyro();
 			gyro.calibrate();
@@ -121,20 +123,32 @@ public class HDrive extends SubsystemBase {
     hLeader.set(hSpeed);
   }
 
-  public void setLeftPID(double targetInches) {
-    leftLeader.set(TalonFXControlMode.Position, targetInches * Constants.kInchesToTicks);
+  public void setLeftPID(double targetTicks) {
+    leftLeader.set(TalonFXControlMode.Position, targetTicks);
   }
 
-  public void setRightPID(double targetInches) {
-    rightLeader.set(TalonFXControlMode.Position, targetInches * Constants.kInchesToTicks);
+  public void setRightPID(double targetTicks) {
+    rightLeader.set(TalonFXControlMode.Position, targetTicks);
   }
 
-  public double getLeftPIDError(){
-    return leftLeader.getClosedLoopError(Constants.kPIDLoopIdx) * Constants.kTicksToInches;
+  public double getLeftPIDError(double targetTicks){
+    return getLeftPIDPosition() - targetTicks;
   }
 
-  public double getRightPIDError(){
-    return rightLeader.getClosedLoopError(Constants.kPIDLoopIdx) * Constants.kTicksToInches;
+  public double getRightPIDError(double targetTicks){
+    return  getRightPIDPosition() - targetTicks;
+  }
+
+  public double getLeftPIDPosition(){
+    return leftLeader.getSelectedSensorPosition();//TODO: Convert to inches
+  }
+
+  public double getRightPIDPosition(){
+    return rightLeader.getSelectedSensorPosition();
+  }
+
+  public void setSafetyEnabled(boolean enabled){
+    differentialDrive.setSafetyEnabled(enabled);
   }
 
   public void setMotorPower(double powerRatio){

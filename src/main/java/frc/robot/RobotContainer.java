@@ -64,15 +64,15 @@ public class RobotContainer {
     driverAButton.whenReleased(new IntakeExtensionMotor(false));
     driverLBumper.whenPressed(new BallTunnelMotor(-Constants.kBallTunnelMotorSpeed));
     driverLBumper.whenReleased(new BallTunnelMotor(0));
-    // driverRBumper.whenPressed(new BallTunnelMotor(Constants.kBallTunnelMotorSpeed));
-    // driverRBumper.whenReleased(new BallTunnelMotor(0));
+    driverRBumper.whenPressed(new BallTunnelMotor(Constants.kBallTunnelMotorSpeed));
+    driverRBumper.whenReleased(new BallTunnelMotor(0));
     //Normal Tele
-    // driverXButton.whenPressed(new ShootShort());
-    // driverXButton.whenReleased(new ShooterMotorRaw(0));
-    // driverXButton.whenReleased(new BallTunnelMotor(0));
-    // driverYButton.whenPressed(new ShootLong());
-    // driverYButton.whenReleased(new ShooterMotorRaw(0));
-    // driverYButton.whenReleased(new BallTunnelMotor(0));
+    driverXButton.whenPressed(new ShootShort());
+    driverXButton.whenReleased(new ShooterMotorRaw(0));
+    driverXButton.whenReleased(new BallTunnelMotor(0));
+    driverYButton.whenPressed(new ShootLong());
+    driverYButton.whenReleased(new ShooterMotorRaw(0));
+    driverYButton.whenReleased(new BallTunnelMotor(0));
 
     driverBButton.whenPressed(new DriveStraightTime(.75, .95));
     driverBButton.whenReleased(new StopDrivetrain());
@@ -103,6 +103,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return new AutonomousRoutine(AutonomousPaths.bouncePath);
+    return new AutonomousRoutine(AutonomousPaths.slalomPath);
   }
 }

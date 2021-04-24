@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutonomousRotate extends CommandBase {
 
@@ -35,6 +36,9 @@ public class AutonomousRotate extends CommandBase {
       if(delta < -180){
         delta += 360;
       }
+      if(Constants.isDebugMode){
+        SmartDashboard.putNumber("autoTurnDelta", delta);
+      }
       //CLAMP SPEED
       if(delta > 30){
         delta = 30;
@@ -42,12 +46,13 @@ public class AutonomousRotate extends CommandBase {
       if(delta < -30){
        delta = -30;
       }    
-      double turnAmount = Constants.kLimeLightTurn_kP * delta;
+      double turnAmount = Constants.kAutoTurn_kP * delta;
       if(Math.abs(turnAmount) < Constants.kMinRotateSpeed){
         turnAmount = Math.copySign(Constants.kMinRotateSpeed, turnAmount);
       }
       RobotContainer.drivetrain.arcadeDrive(0, turnAmount);
-      if(clampTo360(delta) < 1){
+      double clampedDelta = clampTo360(delta);
+      if(clampedDelta < Constants.kMaxAutoTurnDelta || clampedDelta > 360 - Constants.kMaxAutoTurnDelta){
          counter++;
        } else{
          counter = 0;
