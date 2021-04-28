@@ -23,9 +23,8 @@ public class DriveArcadeH extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double forwardSpeed = RobotContainer.driverController.getRawAxis(Constants.kBBRTrigger);
-    double reverseSpeed = RobotContainer.driverController.getRawAxis(Constants.kBBLTrigger);
-    double moveSpeed = (forwardSpeed - reverseSpeed) * Constants.kDriveModifier;
+    double forwardSpeed = RobotContainer.driverController.getRawAxis(Constants.kLeftStickY);
+    double moveSpeed = forwardSpeed * Constants.kDriveModifier;
     double rotateSpeed = RobotContainer.driverController.getRawAxis(Constants.kLeftStickX) * Constants.kDriveModifierTurn;
     double hSpeed = RobotContainer.driverController.getRawAxis(Constants.kRightStickX) * Constants.kDriveModifier;
 

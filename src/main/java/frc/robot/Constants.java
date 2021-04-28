@@ -120,24 +120,11 @@ public final class Constants {
 
     public static final int kLeftStickX = 0;
     public static final int kLeftStickY = 1;
-    public static final int kRightStickX = 4;
-    public static final int kRightStickY = 5;
+    public static final int kRightStickX = 2;
+    public static final int kRightStickY = 3;
 
-    public static final int kBBStickX = 0;
-    public static final int kBBStickY = 1;
-
-    public static final int kBBLTrigger = 2;
-    public static final int kBBRTrigger = 3;
-
-    public static final int kBBButtonX = 2;
-    public static final int kBBButtonY = 3;
-    public static final int kBBButtonA = 0;
-    public static final int kBBButtonB = 1;
-    public static final int kBBButtonLB = 4;
-    public static final int kBBButtonRB = 5;
-
-    public static final int kBBButtonShare = 6;
-    public static final int kBBButtonOptions = 7;
-    public static final int kBBButtonL3 = 8;
-    public static final int kBBButtonR3 = 9;    
+    public static final int kButton1 = 1;
+    public static final int kButton2 = 2;
+    public static final int kButton3 = 3;
+    public static final int kButton4 = 4;
 }

@@ -31,12 +31,6 @@ public class RobotContainer {
   public static JoystickButton driverRBumper = new JoystickButton(driverController, Constants.kBumperR);
   public static JoystickButton driverLBumper = new JoystickButton(driverController, Constants.kBumperL);
 
-  public static Joystick operatorButtonBoard = new Joystick(1);
-  public static JoystickButton operatorL3 = new JoystickButton(operatorButtonBoard, Constants.kBBButtonL3);
-  public static JoystickButton operatorR3 = new JoystickButton(operatorButtonBoard, Constants.kBBButtonR3);
-  public static JoystickButton operatorX = new JoystickButton(operatorButtonBoard, Constants.kBBButtonX);
-  public static JoystickButton operatorY = new JoystickButton(operatorButtonBoard, Constants.kBBButtonY);
-
   public static Compressor compressor = new Compressor();
   public static HDrive drivetrain = new HDrive();
   public static Intake intake = new Intake();
@@ -74,10 +68,10 @@ public class RobotContainer {
     driverYButton.whenReleased(new ShooterMotorRaw(0));
     driverYButton.whenReleased(new BallTunnelMotor(0));
 
-    driverBButton.whenPressed(new DriveStraightTime(.75, .95));
-    driverBButton.whenReleased(new StopDrivetrain());
-    driverXButton.whenPressed(new DriveStraightTime(-.75, .95));
-    driverXButton.whenReleased(new StopDrivetrain());
+    // driverBButton.whenPressed(new DriveStraightTime(.75, .95));
+    // driverBButton.whenReleased(new StopDrivetrain());
+    // driverXButton.whenPressed(new DriveStraightTime(-.75, .95));
+    // driverXButton.whenReleased(new StopDrivetrain());
     
     //Interstellar Accuracy
     
