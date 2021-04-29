@@ -25,7 +25,7 @@ public class DriveArcadeH extends CommandBase {
   public void execute() {
     double forwardSpeed = RobotContainer.driverController.getRawAxis(Constants.kLeftStickY);
     double moveSpeed = forwardSpeed * Constants.kDriveModifier;
-    double rotateSpeed = RobotContainer.driverController.getRawAxis(Constants.kLeftStickX) * Constants.kDriveModifierTurn;
+    double rotateSpeed = -RobotContainer.driverController.getRawAxis(Constants.kLeftStickX) * Constants.kDriveModifierTurn;
     double hSpeed = RobotContainer.driverController.getRawAxis(Constants.kRightStickX) * Constants.kDriveModifier;
 
     if(Math.abs(hSpeed)>0.03){
