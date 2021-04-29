@@ -19,8 +19,8 @@ public final class Constants {
     public static final int kIntakeMotorHelper = 16;
 
     // Drivetrain speed modifiers
-    public static final double kDriveModifierTurn = 1; // .4
-    public static final double kDriveModifier = 1; // .6
+    public static final double kDriveModifierTurn = .4; // 1
+    public static final double kDriveModifier = .6; // 1
     public static final double kCounterSteer = 0.28;
 
     // Motor speeds
