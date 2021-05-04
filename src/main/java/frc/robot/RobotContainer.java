@@ -62,20 +62,21 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    driverAButton.whenPressed(new IntakeExtensionMotor(true));
-    driverAButton.whenReleased(new IntakeExtensionMotor(false));
+    //Normal Tele
+
     driverLBumper.whenPressed(new BallTunnelMotor(-Constants.kBallTunnelMotorSpeed));
     driverLBumper.whenReleased(new BallTunnelMotor(0));
     driverRBumper.whenPressed(new BallTunnelMotor(Constants.kBallTunnelMotorSpeed));
     driverRBumper.whenReleased(new BallTunnelMotor(0));
 
-    buttonBoardAButton.whenPressed(new IntakeExtensionMotor(true));
-    buttonBoardAButton.whenReleased(new IntakeExtensionMotor(false));
     buttonBoardLBumper.whenPressed(new BallTunnelMotor(-Constants.kBallTunnelMotorSpeed));
     buttonBoardLBumper.whenReleased(new BallTunnelMotor(0));
     buttonBoardRBumper.whenPressed(new BallTunnelMotor(Constants.kBallTunnelMotorSpeed));
     buttonBoardRBumper.whenReleased(new BallTunnelMotor(0));
-    //Normal Tele
+    
+    driverBButton.whenPressed(new ToggleInverse());
+    driverAButton.whenPressed(new IntakeExtensionMotor(true));
+    driverAButton.whenReleased(new IntakeExtensionMotor(false));
     driverXButton.whenPressed(new ShootShort());
     driverXButton.whenReleased(new ShooterMotorRaw(0));
     driverXButton.whenReleased(new BallTunnelMotor(0));
@@ -83,18 +84,15 @@ public class RobotContainer {
     driverYButton.whenReleased(new ShooterMotorRaw(0));
     driverYButton.whenReleased(new BallTunnelMotor(0));
 
+    buttonBoardBButton.whenPressed(new ToggleInverse());
+    buttonBoardAButton.whenPressed(new IntakeExtensionMotor(true));
+    buttonBoardAButton.whenReleased(new IntakeExtensionMotor(false));
     buttonBoardXButton.whenPressed(new ShootShort());
     buttonBoardXButton.whenReleased(new ShooterMotorRaw(0));
     buttonBoardXButton.whenReleased(new BallTunnelMotor(0));
     buttonBoardYButton.whenPressed(new ShootLong());
     buttonBoardYButton.whenReleased(new ShooterMotorRaw(0));
-    buttonBoardYButton.whenReleased(new BallTunnelMotor(0));
-
-    // driverBButton.whenPressed(new DriveStraightTime(.75, .95));
-    // driverBButton.whenReleased(new StopDrivetrain());
-    // driverXButton.whenPressed(new DriveStraightTime(-.75, .95));
-    // driverXButton.whenReleased(new StopDrivetrain());
-    
+    buttonBoardYButton.whenReleased(new BallTunnelMotor(0));    
     //Interstellar Accuracy
     
     /*
