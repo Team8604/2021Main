@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants;
@@ -23,11 +24,10 @@ public class DriveArcadeH extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double forwardSpeed = RobotContainer.driverController.getRawAxis(Constants.kLeftStickY);
+    double forwardSpeed = -RobotContainer.driverController.getRawAxis(Constants.kRightStickY);
     double moveSpeed = forwardSpeed * Constants.kDriveModifier;
-    double rotateSpeed = -RobotContainer.driverController.getRawAxis(Constants.kLeftStickX) * Constants.kDriveModifierTurn;
-    double hSpeed = RobotContainer.driverController.getRawAxis(Constants.kRightStickX) * Constants.kDriveModifier;
-
+    double rotateSpeed = RobotContainer.driverController.getRawAxis(Constants.kRightStickX) * Constants.kDriveModifierTurn;
+    double hSpeed = RobotContainer.driverController.getRawAxis(Constants.kLeftStickX) * Constants.kDriveModifier;
     if(Math.abs(hSpeed)>0.03){
       rotateSpeed = rotateSpeed + -Math.copySign(Constants.kCounterSteer, hSpeed);
     }

@@ -31,7 +31,7 @@ public class RobotContainer {
   public static JoystickButton driverRBumper = new JoystickButton(driverController, Constants.kBumperR);
   public static JoystickButton driverLBumper = new JoystickButton(driverController, Constants.kBumperL);
 
-  public static Joystick buttonBoardController = new Joystick(0);
+  public static Joystick buttonBoardController = new Joystick(1);
   public static JoystickButton buttonBoardAButton = new JoystickButton(buttonBoardController, Constants.kButtonA);
   public static JoystickButton buttonBoardBButton = new JoystickButton(buttonBoardController, Constants.kButtonB);
   public static JoystickButton buttonBoardXButton = new JoystickButton(buttonBoardController, Constants.kButtonX);

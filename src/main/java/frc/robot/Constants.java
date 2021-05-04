@@ -120,8 +120,8 @@ public final class Constants {
 
     public static final int kLeftStickX = 0;
     public static final int kLeftStickY = 1;
-    public static final int kRightStickX = 2;
-    public static final int kRightStickY = 3;
+    public static final int kRightStickX = 4;
+    public static final int kRightStickY = 5;
 
     public static final int kButton1 = 1;
     public static final int kButton2 = 2;
