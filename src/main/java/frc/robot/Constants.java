@@ -13,7 +13,7 @@ public final class Constants {
     public static final int kIntakeMotor = 4;
     public static final int kBallMotor = 5;
     public static final int kShooterMotorMaster = 12;
-    public static final int kShooterMotorSlave = 13;
+    public static final int[] kShooterMotorSlaves = { 13 };
     public static final int kHLeader = 14;
     public static final int[] kHFollowers = { 15 };
     public static final int kIntakeMotorHelper = 16;
