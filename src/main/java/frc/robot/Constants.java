@@ -12,8 +12,8 @@ public final class Constants {
     public static final int[] kLeftFollowers = { 3 };
     public static final int kIntakeMotor = 4;
     public static final int kBallMotor = 5;
-    public static final int kShooterMotorMaster = 12;
-    public static final int[] kShooterMotorSlaves = { 13 };
+    public static final int kShooterMotorMaster = 13;
+    public static final int[] kShooterMotorSlaves = { 4 };
     public static final int kHLeader = 14;
     public static final int[] kHFollowers = { 15 };
     public static final int kIntakeMotorHelper = 16;
@@ -34,6 +34,7 @@ public final class Constants {
     public static boolean invertDrivetrainMotors = true;
     public static final boolean kIntakeMotorInversion = true;
     public static final boolean kBallTunnelInversion = true;
+    public static final boolean kShooterInversion = true;
 
     // PID Constants
     public static final int kPIDLoopIdx = 0;
@@ -65,7 +66,7 @@ public final class Constants {
     // Setpoints
     public static final int kTunnelDistance = 15000; //7500;
     public static final int kTunnelDistanceShoot = 1024;
-    public static final double kShootShortMotorSpeed = 3000;
+    public static final double kShootShortMotorSpeed = 300;
     public static final double kShootLongMotorSpeed = 2750;
     //Setpoints for interstellar accuracy
     public static final double kShootGreen = 3000;

@@ -25,6 +25,8 @@ public class Shooter extends SubsystemBase {
 
   public Shooter() {
     master = new WPI_TalonFX(Constants.kShooterMotorMaster);
+    master.setInverted(Constants.kShooterInversion);
+    slaves = new WPI_TalonFX[Constants.kShooterMotorSlaves.length];
     for(int i = 0;i < Constants.kShooterMotorSlaves.length;i ++){
       slaves[i] = new WPI_TalonFX(Constants.kShooterMotorSlaves[i]);
       slaves[i].follow(master);
