@@ -27,11 +27,12 @@ public class DriveArcadeH extends CommandBase {
     float mul = RobotContainer.drivetrain.inverse ? -1 : 1;
     double forwardSpeed = -mul * RobotContainer.driverController.getRawAxis(Constants.kLeftStickY);
     double moveSpeed = forwardSpeed * Constants.kDriveModifier;
-    double rotateSpeed = mul * RobotContainer.driverController.getRawAxis(Constants.kRightStickX) * Constants.kDriveModifierTurn;
+    double rotateSpeed = RobotContainer.driverController.getRawAxis(Constants.kRightStickX) * Constants.kDriveModifierTurn;
     double hSpeed = mul * RobotContainer.driverController.getRawAxis(Constants.kLeftStickX) * Constants.kDriveModifier;
-    if(Math.abs(hSpeed)>0.03){
-      rotateSpeed = rotateSpeed + -Math.copySign(Constants.kCounterSteer, hSpeed);
-    }
+    // if(Math.abs(hSpeed)>0.03){
+    //   rotateSpeed = rotateSpeed + -Math.copySign(Constants.kCounterSteer * RobotContainer.driverController.getRawAxis(Constants.kLeftStickX), hSpeed);
+    // }
+    //HDrive doesnt work on school surfaces so counter steer just causes issues
     RobotContainer.drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
     RobotContainer.drivetrain.set(hSpeed);
   }
