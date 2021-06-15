@@ -176,4 +176,6 @@ public class HDrive extends SubsystemBase {
   @Override
   public void periodic() {
   }
+
+  public boolean inverse = false;
 }
