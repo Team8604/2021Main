@@ -17,7 +17,7 @@ import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
   private WPI_TalonFX master;
-  private WPI_TalonFX slave;
+  private WPI_TalonFX[] slaves;
 
   private DoubleSolenoid hoodPiston;
 
@@ -25,12 +25,16 @@ public class Shooter extends SubsystemBase {
 
   public Shooter() {
     master = new WPI_TalonFX(Constants.kShooterMotorMaster);
-    slave = new WPI_TalonFX(Constants.kShooterMotorSlave);
-    slave.follow(master);
-    slave.setInverted(InvertType.OpposeMaster);
-    master.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, Constants.kDriveCurrentLimitContinuous,
+    master.setInverted(Constants.kShooterInversion);
+    slaves = new WPI_TalonFX[Constants.kShooterMotorSlaves.length];
+    for(int i = 0;i < Constants.kShooterMotorSlaves.length;i ++){
+      slaves[i] = new WPI_TalonFX(Constants.kShooterMotorSlaves[i]);
+      slaves[i].follow(master);
+      slaves[i].setInverted(InvertType.OpposeMaster);
+      slaves[i].configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, Constants.kDriveCurrentLimitContinuous,
         Constants.kDriveCurrentLimitPeak, Constants.kDriveCurrentLimitTime));
-    slave.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, Constants.kDriveCurrentLimitContinuous,
+    }
+    master.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, Constants.kDriveCurrentLimitContinuous,
         Constants.kDriveCurrentLimitPeak, Constants.kDriveCurrentLimitTime));
     hoodPiston = new DoubleSolenoid(Constants.kPCM, Constants.kShooterSolenoidExtend,
         Constants.kShooterSolenoidRetract);
