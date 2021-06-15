@@ -11,7 +11,15 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.*;
+import frc.robot.commands.auto.AutonomousRoutine;
+import frc.robot.commands.drivetrain.DriveArcadeH;
+import frc.robot.commands.drivetrain.DriveStraightTime;
+import frc.robot.commands.drivetrain.StopDrivetrain;
+import frc.robot.commands.intake.IntakeExtensionMotor;
+import frc.robot.commands.shooter.BallTunnelMotor;
+import frc.robot.commands.shooter.ShooterMotorRaw;
+import frc.robot.commands.shooter.distances.ShootLong;
+import frc.robot.commands.shooter.distances.ShootShort;
 import frc.robot.subsystems.*;
 
 /**

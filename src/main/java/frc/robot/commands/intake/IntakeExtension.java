@@ -2,26 +2,24 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class IntakeMotor extends CommandBase {
-  private double speed;
-  private double helperSpeed;
+public class IntakeExtension extends CommandBase {
 
-  public IntakeMotor(double speed, double helperSpeed) {
+  private boolean extended;
+
+  public IntakeExtension(boolean extended) {
     addRequirements(RobotContainer.intake);
-    this.speed = speed;
-    this.helperSpeed = helperSpeed;
+    this.extended = extended;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.intake.setMotor(speed);
-    RobotContainer.intake.setMotorHelper(helperSpeed);
+    RobotContainer.intake.setSolenoid(extended);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
