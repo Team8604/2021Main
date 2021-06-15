@@ -13,32 +13,33 @@ public final class Constants {
     public static final int kIntakeMotor = 4;
     public static final int kBallMotor = 5;
     public static final int kShooterMotorMaster = 12;
-    public static final int kShooterMotorSlave = 13;
+    public static final int[] kShooterMotorSlaves = { 13 };
     public static final int kHLeader = 14;
     public static final int[] kHFollowers = { 15 };
     public static final int kIntakeMotorHelper = 16;
 
     // Drivetrain speed modifiers
-    public static final double kDriveModifierTurn = 1; // .4
-    public static final double kDriveModifier = 1; // .6
+    public static final double kDriveModifierTurn = .4; // 1
+    public static final double kDriveModifier = .45; // 1
     public static final double kCounterSteer = 0.28;
 
     // Motor speeds
     public static final double kBallTunnelMotorSpeedShoot = .3;
     public static final double kIntakeMotorHelperSpeed = 0.7;
     public static final double kBallTunnelMotorSpeedSlow = 0.3;
-    public static final double kIntakeMotorSpeed = 0.70;
+    public static final double kIntakeMotorSpeed = 0.40;
     public static final double kBallTunnelMotorSpeed = 0.60;
 
     // Inversions
     public static boolean invertDrivetrainMotors = true;
     public static final boolean kIntakeMotorInversion = true;
     public static final boolean kBallTunnelInversion = true;
+    public static final boolean kShooterInversion = false;
 
     // PID Constants
     public static final int kPIDLoopIdx = 0;
-    public static final int kTimeoutMs = 30;
-    public static final int kTimeoutsMs = 30;
+    public static final int kTimeoutMs = 0;
+    public static final int kTimeoutsMs = 0;
     public static final double kGains_Velocity_kP = .39;
     public static final double kGains_Velocity_kI = 0;
     public static final double kGains_Velocity_kD = 1;
@@ -123,21 +124,9 @@ public final class Constants {
     public static final int kRightStickX = 4;
     public static final int kRightStickY = 5;
 
-    public static final int kBBStickX = 0;
-    public static final int kBBStickY = 1;
-
-    public static final int kBBLTrigger = 2;
-    public static final int kBBRTrigger = 3;
-
-    public static final int kBBButtonX = 2;
-    public static final int kBBButtonY = 3;
-    public static final int kBBButtonA = 0;
-    public static final int kBBButtonB = 1;
-    public static final int kBBButtonLB = 4;
-    public static final int kBBButtonRB = 5;
-
-    public static final int kBBButtonShare = 6;
-    public static final int kBBButtonOptions = 7;
-    public static final int kBBButtonL3 = 8;
-    public static final int kBBButtonR3 = 9;    
+    public static final int kButton1 = 1;
+    public static final int kButton2 = 2;
+    public static final int kButton3 = 3;
+    public static final int kButton4 = 4;
 }
+
