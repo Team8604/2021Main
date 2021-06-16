@@ -23,6 +23,8 @@ public class Shooter extends SubsystemBase {
 
   private double targetSpeed;
 
+  public static double testingFlywheelSpeed = 3000;
+
   public Shooter() {
     master = new WPI_TalonFX(Constants.kShooterMotorMaster);
     master.setInverted(Constants.kShooterInversion);

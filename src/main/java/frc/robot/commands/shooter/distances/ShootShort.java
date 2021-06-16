@@ -5,12 +5,12 @@
 package frc.robot.commands.shooter.distances;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Constants;
 import frc.robot.commands.shooter.BallTunnelBeforeShooting;
 import frc.robot.commands.shooter.BallTunnelDuringShooting;
 import frc.robot.commands.shooter.LimeLightTurn;
 import frc.robot.commands.shooter.ShooterHood;
 import frc.robot.commands.shooter.ShooterMotor;
+import frc.robot.subsystems.Shooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -18,6 +18,6 @@ import frc.robot.commands.shooter.ShooterMotor;
 public class ShootShort extends SequentialCommandGroup {
   /** Creates a new ShootShort. */
   public ShootShort() {
-    addCommands(new BallTunnelBeforeShooting(), new ShooterHood(false), new ShooterMotor(Constants.kShootShortMotorSpeed), new LimeLightTurn(), new BallTunnelDuringShooting());
+    addCommands(new BallTunnelBeforeShooting(), new ShooterHood(true), new ShooterMotor(Shooter.testingFlywheelSpeed), new LimeLightTurn(), new BallTunnelDuringShooting());
   }
 }

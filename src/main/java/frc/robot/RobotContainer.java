@@ -15,6 +15,7 @@ import frc.robot.commands.auto.AutonomousRoutine;
 import frc.robot.commands.drivetrain.DriveArcadeH;
 import frc.robot.commands.intake.IntakeExtensionMotor;
 import frc.robot.commands.other.BallTunnelMotor;
+import frc.robot.commands.shooter.ChangeFlywheelSpeed;
 import frc.robot.commands.shooter.ShooterMotorRaw;
 import frc.robot.commands.shooter.distances.ShootLong;
 import frc.robot.commands.shooter.distances.ShootShort;
@@ -71,7 +72,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     //Normal Tele
 
-    driverLBumper.whenPressed(new BallTunnelMotor(-Constants.kBallTunnelMotorSpeed));
+    /* driverLBumper.whenPressed(new BallTunnelMotor(-Constants.kBallTunnelMotorSpeed));
     driverLBumper.whenReleased(new BallTunnelMotor(0));
     driverRBumper.whenPressed(new BallTunnelMotor(Constants.kBallTunnelMotorSpeed));
     driverRBumper.whenReleased(new BallTunnelMotor(0));
@@ -79,8 +80,11 @@ public class RobotContainer {
     buttonBoardLBumper.whenPressed(new BallTunnelMotor(-Constants.kBallTunnelMotorSpeed));
     buttonBoardLBumper.whenReleased(new BallTunnelMotor(0));
     buttonBoardRBumper.whenPressed(new BallTunnelMotor(Constants.kBallTunnelMotorSpeed));
-    buttonBoardRBumper.whenReleased(new BallTunnelMotor(0));
+    buttonBoardRBumper.whenReleased(new BallTunnelMotor(0)); */
     
+    driverLBumper.whenPressed(new ChangeFlywheelSpeed(-10));
+    driverRBumper.whenPressed(new ChangeFlywheelSpeed(10));
+
     driverBButton.whenPressed(new ShootVariable());
     driverBButton.whenReleased(new ShooterMotorRaw(0));
     driverBButton.whenReleased(new BallTunnelMotor(0));
@@ -93,7 +97,7 @@ public class RobotContainer {
     driverYButton.whenReleased(new ShooterMotorRaw(0));
     driverYButton.whenReleased(new BallTunnelMotor(0));
 
-    buttonBoardBButton.whenPressed(new ShootVariable());
+    /* buttonBoardBButton.whenPressed(new ShootVariable());
     buttonBoardBButton.whenReleased(new ShooterMotorRaw(0));
     buttonBoardBButton.whenReleased(new BallTunnelMotor(0));
     buttonBoardAButton.whenPressed(new IntakeExtensionMotor(true));
@@ -103,7 +107,7 @@ public class RobotContainer {
     buttonBoardXButton.whenReleased(new BallTunnelMotor(0));
     buttonBoardYButton.whenPressed(new ShootLong());
     buttonBoardYButton.whenReleased(new ShooterMotorRaw(0));
-    buttonBoardYButton.whenReleased(new BallTunnelMotor(0));    
+    buttonBoardYButton.whenReleased(new BallTunnelMotor(0)); */
   }
 
   /**
