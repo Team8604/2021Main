@@ -18,6 +18,6 @@ import frc.robot.commands.shooter.ShooterMotor;
 public class ShootShort extends SequentialCommandGroup {
   /** Creates a new ShootShort. */
   public ShootShort() {
-    addCommands(new BallTunnelBeforeShooting(), new ShooterHood(false), new ShooterMotor(Constants.kShootShortMotorSpeed), new LimeLightTurn(), new BallTunnelDuringShooting());
+    addCommands(new BallTunnelBeforeShooting(), new ShooterHood(true), new ShooterMotor(Constants.kShootShortMotorSpeed), new LimeLightTurn(), new BallTunnelDuringShooting());
   }
 }

@@ -18,6 +18,6 @@ import frc.robot.commands.shooter.ShooterMotor;
 public class ShootLong extends SequentialCommandGroup {
   /** Creates a new ShootLong. */
   public ShootLong() {
-    addCommands(new BallTunnelBeforeShooting(), new ShooterHood(true), new ShooterMotor(Constants.kShootLongMotorSpeed), new LimeLightTurn(), new BallTunnelDuringShooting());
+    addCommands(new BallTunnelBeforeShooting(), new ShooterHood(false), new ShooterMotor(Constants.kShootLongMotorSpeed), new LimeLightTurn(), new BallTunnelDuringShooting());
   }
 }
