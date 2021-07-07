@@ -20,13 +20,13 @@ public class AutonomousPaths {
         new AutonomousDrive(60),
         new AutonomousRotate(-90),
         new AutonomousDrive(100),
-        // //COLLECT B
+        //COLLECT B
         new AutonomousDrive(-100),
         new AutonomousRotate(90),
         new AutonomousDrive(85),
         new AutonomousRotate(-90),
         new AutonomousDrive(95),
-        // //COLLECT C
+        //COLLECT C
         new AutonomousDrive(-45),
         new AutonomousRotate(90),
         new AutonomousDrive(45),

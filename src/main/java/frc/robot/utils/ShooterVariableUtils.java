@@ -10,21 +10,6 @@ public final class ShooterVariableUtils {
     
     private ShooterVariableUtils() {}//Don't allow people to make instances of this.
 
-    public static final double[][] MAPPING_DIST_RPM = new double[][] {
-        { 12, 3000 },
-        { 23, 3500 },
-        { 24, 2500 },
-        { 36, 3000 }//TEMP DATA
-    };
-
-    public static final double[][] MAPPING_LLY_DIST = new double[][] {
-        { -5, 36 },
-        {  0, 24 },
-        {  5, 12 }//TEMP DATA
-    };
-
-    public static final double HOOD_SWITCH_POS = 24;
-
     // ASSUMES MAPPING IS SORTED
     public static double MapByMapping(double value, double[][] mapping){
 
@@ -114,12 +99,16 @@ public final class ShooterVariableUtils {
         }
 
         if(v == 0){
-            return new ShooterConfiguration(false, 3000);//Default
+            return new ShooterConfiguration(Constants.kShootDefaultHoodState, Constants.kShootDefaultMotorSpeed);//Default
         }
 
-        double distance = MapByMapping(y, MAPPING_LLY_DIST);
+        double distance = MapByMapping(y, Constants.MAPPING_LLY_DIST);
 
-        return new ShooterConfiguration(distance < HOOD_SWITCH_POS, MapByMapping(distance, MAPPING_DIST_RPM));
+        if(distance < Constants.HOOD_SWITCH_POS){
+            return new ShooterConfiguration(true, MapByMapping(distance, Constants.MAPPING_DIST_RPM_LOW));
+        } else {
+            return new ShooterConfiguration(false, MapByMapping(distance, Constants.MAPPING_DIST_RPM_HIGH));
+        }
     }
 
 }

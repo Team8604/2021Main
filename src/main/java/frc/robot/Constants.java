@@ -68,6 +68,8 @@ public final class Constants {
     public static final int kTunnelDistanceShoot = 1024;
     public static final double kShootShortMotorSpeed = 3000;
     public static final double kShootLongMotorSpeed = 2750;
+    public static final double kShootDefaultMotorSpeed = 3000;
+    public static final boolean kShootDefaultHoodState = false;
     //Setpoints for interstellar accuracy
     public static final double kShootGreen = 3000;
     public static final double kShootYellow = 3500;
@@ -128,5 +130,26 @@ public final class Constants {
     public static final int kButton2 = 2;
     public static final int kButton3 = 3;
     public static final int kButton4 = 4;
+
+    //Shooter mappings
+    public static final double[][] MAPPING_DIST_RPM_LOW = new double[][] {
+        { 12, 3000 },
+        { 24, 3500 },
+        { 36, 4000 }//TEMP DATA
+    };
+
+    public static final double[][] MAPPING_DIST_RPM_HIGH = new double[][] {
+        { 12, 2000 },
+        { 24, 2500 },
+        { 36, 3000 }//TEMP DATA
+    };
+
+    public static final double[][] MAPPING_LLY_DIST = new double[][] {
+        { -5, 36 },
+        {  0, 24 },
+        {  5, 12 }//TEMP DATA
+    };
+
+    public static final double HOOD_SWITCH_POS = 24;
 }
 
